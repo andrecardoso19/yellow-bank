@@ -55,14 +55,6 @@ final class NPSPresenterTests: XCTestCase {
         XCTAssertEqual(args.displaySpy.messages, [.displaySomething])
     }
     
-    func testDidNextStep_WhenCalled_ShouldCoordinatorSomething() {
-        let args = makeSUT()
-        
-        args.sut.didNextStep()
-        
-        XCTAssertEqual(args.displaySpy.messages, [.displaySomething])
-    }
-    
     func testDisplayError_WhenCalled_ShouldDisplayError() {
         let args = makeSUT()
         

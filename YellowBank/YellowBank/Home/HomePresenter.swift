@@ -7,7 +7,6 @@
 
 protocol HomePresenting: AnyObject {
     func displaySomething()
-    func didNextStep()
     func displayError()
 }
 
@@ -18,10 +17,6 @@ final class HomePresenter {
 // MARK: - HomePresenting
 extension HomePresenter: HomePresenting {
     func displaySomething() {
-        viewController?.displaySomething()
-    }
-    
-    func didNextStep() {
         viewController?.displaySomething()
     }
     

@@ -10,7 +10,6 @@ import XCTest
 
 private class HomePresenterSpy: HomePresenting {
     enum Message {
-        case didNextStep
         case displaySomething
         case displayError
     }
@@ -19,10 +18,6 @@ private class HomePresenterSpy: HomePresenting {
 
     func displaySomething() {
         messages.append(.displaySomething)
-    }
-
-    func didNextStep() {
-        messages.append(.didNextStep)
     }
     
     func displayError() {
