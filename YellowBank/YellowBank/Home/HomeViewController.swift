@@ -15,10 +15,17 @@ protocol HomeDisplaying: AnyObject {
 final class HomeViewController: UIViewController {
     private let interactor: HomeInteracting
     
+    private lazy var backgroundLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        layer.colors = [UIColor.orange.cgColor, UIColor.white.cgColor]
+        return layer
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.bounces = false
-        tableView.backgroundColor = .yellow
+        tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
@@ -40,7 +47,6 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
         interactor.loadData()
     }
     
@@ -50,6 +56,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func setupViews() {
+        view.layer.addSublayer(backgroundLayer)
         view.addSubview(tableView)
     }
     

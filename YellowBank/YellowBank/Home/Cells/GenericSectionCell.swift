@@ -10,12 +10,13 @@ final class GenericSectionCell: UITableViewCell {
     static let reuseId = "GenericSectionCell"
     private var dto: GenericSectionCellDTO
     
-//    private lazy var backgroundRoundView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .white
-//        view.layer.cornerRadius = 5
-//        return view
-//    }()
+    private lazy var backgroundRoundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
@@ -58,26 +59,34 @@ final class GenericSectionCell: UITableViewCell {
     }
     
     private func setupViews() {
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(subTitleLabel)
-        contentView.addSubview(arrowImage)
+        backgroundColor = .clear
+        contentView.addSubview(backgroundRoundView)
+        backgroundRoundView.addSubview(titleLabel)
+        backgroundRoundView.addSubview(subTitleLabel)
+        backgroundRoundView.addSubview(arrowImage)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            backgroundRoundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            backgroundRoundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            backgroundRoundView.heightAnchor.constraint(equalToConstant: 70),
+            backgroundRoundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            backgroundRoundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            
+            titleLabel.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
             titleLabel.heightAnchor.constraint(equalToConstant: 30),
             
             subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-            subTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            subTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
+            subTitleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
             subTitleLabel.heightAnchor.constraint(equalToConstant: 30),
-            subTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            subTitleLabel.bottomAnchor.constraint(equalTo: backgroundRoundView.bottomAnchor),
             
-            arrowImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            arrowImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
+            arrowImage.centerYAnchor.constraint(equalTo: backgroundRoundView.centerYAnchor),
+            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5)
         ])
     }
 }
