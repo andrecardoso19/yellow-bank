@@ -8,14 +8,11 @@
 protocol HomePresenting: AnyObject {
     func displaySomething()
     func didNextStep()
+    func displayError()
 }
 
 final class HomePresenter {
     weak var viewController: HomeDisplaying?
-
-    init() {
-        
-    }
 }
 
 // MARK: - HomePresenting
@@ -26,5 +23,9 @@ extension HomePresenter: HomePresenting {
     
     func didNextStep() {
         viewController?.displaySomething()
+    }
+    
+    func displayError() {
+        viewController?.displayError()
     }
 }

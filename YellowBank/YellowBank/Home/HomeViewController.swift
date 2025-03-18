@@ -9,6 +9,7 @@ import UIKit
 
 protocol HomeDisplaying: AnyObject {
     func displaySomething()
+    func displayError()
 }
 
 final class HomeViewController: UIViewController {
@@ -27,13 +28,17 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
-        interactor.loadSomething()
+        interactor.loadData()
     }
 }
 
 // MARK: - HomeDisplaying
 extension HomeViewController: HomeDisplaying {
     func displaySomething() {
+        // a fazer
+    }
+    
+    func displayError() {
         // a fazer
     }
 }

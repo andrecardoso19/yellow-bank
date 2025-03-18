@@ -12,6 +12,7 @@ private class HomePresenterSpy: HomePresenting {
     enum Message {
         case didNextStep
         case displaySomething
+        case displayError
     }
 
     private(set) var messages: [Message] = []
@@ -23,20 +24,28 @@ private class HomePresenterSpy: HomePresenting {
     func didNextStep() {
         messages.append(.didNextStep)
     }
+    
+    func displayError() {
+        messages.append(.displayError)
+    }
 }
 
 private class HomeServiceMock: HomeServicing {
-    // a fazer
+    var getDataResult: Result<YellowBank.HomeResponse, YellowBank.HomeApiError> = .failure(.decodeFail)
+    
+    func getData(completion: @escaping (Result<YellowBank.HomeResponse, YellowBank.HomeApiError>) -> Void) {
+        completion(getDataResult)
+    }
 }
 
 private extension HomeInteractorTests {
-    typealias Args = (
+    typealias Doubles = (
         sut: HomeInteractor,
         presenterSpy: HomePresenterSpy,
         serviceMock: HomeServiceMock
     )
 
-    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> Args {
+    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> Doubles {
         let presenterSpy = HomePresenterSpy()
         let serviceMock = HomeServiceMock()
 
@@ -50,10 +59,20 @@ private extension HomeInteractorTests {
 }
 
 final class HomeInteractorTests: XCTestCase {
-    func testLoadSomething_WhenCalled_ShouldPresenterDisplaySomething() {
+    func testLoadSomething_WhenFailure_ShouldPresenterDisplayError() {
         let args = makeSUT()
         
-        args.sut.loadSomething()
+        args.serviceMock.getDataResult = .failure(.decodeFail)
+        args.sut.loadData()
+        
+        XCTAssertEqual(args.presenterSpy.messages, [.displayError])
+    }
+    
+    func testLoadSomething_WhenSuccess_ShouldPresenterDisplaySomething() {
+        let args = makeSUT()
+        
+        args.serviceMock.getDataResult = .success(HomeResponseMock.responseMock)
+        args.sut.loadData()
         
         XCTAssertEqual(args.presenterSpy.messages, [.displaySomething])
     }

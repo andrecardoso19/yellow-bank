@@ -6,7 +6,7 @@
 //
 
 protocol HomeInteracting: AnyObject {
-    func loadSomething()
+    func loadData()
 }
 
 final class HomeInteractor {
@@ -22,11 +22,27 @@ final class HomeInteractor {
 
 // MARK: - HomeInteracting
 extension HomeInteractor: HomeInteracting {
-    func loadSomething() {
-        presenter.displaySomething()
+    func loadData() {
+        service.getData { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let homeResponse):
+                presenter.displaySomething()
+            case .failure(let error):
+                switch error {
+                case .decodeFail:
+                    handleError(error: error)
+                }
+            }
+        }
     }
 }
 
 private extension HomeInteractor {
-
+    func handleError(error: HomeApiError) {
+        switch error {
+        case .decodeFail:
+            presenter.displayError()
+        }
+    }
 }

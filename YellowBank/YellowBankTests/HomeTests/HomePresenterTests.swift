@@ -12,6 +12,7 @@ private class HomeDisplaySpy: HomeDisplaying {
     enum Message {
         case didNextStep
         case displaySomething
+        case displayError
     }
 
     private(set) var messages: [Message] = []
@@ -23,15 +24,19 @@ private class HomeDisplaySpy: HomeDisplaying {
     func didNextStep() {
         messages.append(.didNextStep)
     }
+    
+    func displayError() {
+        messages.append(.displayError)
+    }
 }
 
 private extension NPSPresenterTests {
-    typealias DependencySUT = (
+    typealias Doubles = (
         sut: HomePresenter,
         displaySpy: HomeDisplaySpy
     )
 
-    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> DependencySUT {
+    func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> Doubles {
         let displaySpy = HomeDisplaySpy()
 
         let sut = HomePresenter()
@@ -56,6 +61,14 @@ final class NPSPresenterTests: XCTestCase {
         args.sut.didNextStep()
         
         XCTAssertEqual(args.displaySpy.messages, [.displaySomething])
+    }
+    
+    func testDisplayError_WhenCalled_ShouldDisplayError() {
+        let args = makeSUT()
+        
+        args.sut.displayError()
+        
+        XCTAssertEqual(args.displaySpy.messages, [.displayError])
     }
 }
 
