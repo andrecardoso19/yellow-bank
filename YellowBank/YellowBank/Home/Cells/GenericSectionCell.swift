@@ -9,44 +9,13 @@ import UIKit
 final class GenericSectionCell: UITableViewCell {
     static let reuseId = "GenericSectionCell"
     private var dto: GenericSectionCellDTO
-    
-    private lazy var backgroundRoundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 10
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.font = .systemFont(ofSize: CGFloat(dto.title.fontSize), weight: .medium)
-        titleLabel.text = dto.title.text
-        titleLabel.textColor = UIColor(named: dto.title.color)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        return titleLabel
-    }()
-    
-    private lazy var subTitleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.font = .systemFont(ofSize: CGFloat(dto.subtitle.fontSize), weight: .medium)
-        titleLabel.text = dto.subtitle.text
-        titleLabel.textColor = UIColor(named: dto.subtitle.color)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        return titleLabel
-    }()
-    
-    private lazy var arrowImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(systemName: "arrow.right"))
-        imageView.tintColor = .black
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    private lazy var genericSectionItem = DesignSystem.toGenericSectionItem()
     
     init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, dto: GenericSectionCellDTO) {
         self.dto = dto
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+        genericSectionItem.setDTO(dto: .init(title: dto.title, subtitle: dto.subtitle))
         buildLayout()
     }
 
@@ -60,33 +29,16 @@ final class GenericSectionCell: UITableViewCell {
     
     private func setupViews() {
         backgroundColor = .clear
-        contentView.addSubview(backgroundRoundView)
-        backgroundRoundView.addSubview(titleLabel)
-        backgroundRoundView.addSubview(subTitleLabel)
-        backgroundRoundView.addSubview(arrowImage)
+        contentView.addSubview(genericSectionItem)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            backgroundRoundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            backgroundRoundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            backgroundRoundView.heightAnchor.constraint(equalToConstant: 70),
-            backgroundRoundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            backgroundRoundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            
-            titleLabel.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
-            titleLabel.heightAnchor.constraint(equalToConstant: 30),
-            
-            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-            subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
-            subTitleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
-            subTitleLabel.heightAnchor.constraint(equalToConstant: 30),
-            subTitleLabel.bottomAnchor.constraint(equalTo: backgroundRoundView.bottomAnchor),
-            
-            arrowImage.centerYAnchor.constraint(equalTo: backgroundRoundView.centerYAnchor),
-            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5)
+            genericSectionItem.topAnchor.constraint(equalTo: contentView.topAnchor),
+            genericSectionItem.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            genericSectionItem.heightAnchor.constraint(equalToConstant: 70),
+            genericSectionItem.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            genericSectionItem.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }

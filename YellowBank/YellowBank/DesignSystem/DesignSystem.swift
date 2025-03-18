@@ -1,0 +1,14 @@
+//
+//  DesignSystem.swift
+//  YellowBank
+//
+//  Created by André  Aragão on 18/03/25.
+//
+
+import UIKit
+
+enum DesignSystem {
+    static func toGenericSectionItem() -> GenericSectionItemInterface {
+        return GenericSectionItemView()
+    }
+}
