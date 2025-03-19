@@ -14,4 +14,10 @@ enum DesignSystem {
     static func toBalanceItem() -> BalanceItemInterface {
         return BalanceItemView()
     }
+    
+    enum BaseComponents {
+        static func toBalanceActionButton() -> BalanceActionButtonInterface {
+            return BalanceActionButtonView()
+        }
+    }
 }

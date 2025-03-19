@@ -50,11 +50,6 @@ final class BalanceItemView: UIView, BalanceItemInterface {
         return actionButtonStackView
     }()
     
-    private lazy var button1 = BalanceActionButtonView()
-    private lazy var button2 = BalanceActionButtonView()
-    private lazy var button3 = BalanceActionButtonView()
-    private lazy var button4 = BalanceActionButtonView()
-    
     init() {
         dto = BalanceItemDTO(
             amount: .init(currencySymbol: "", value: .init(text: "", fontSize: 0, color: "")),
@@ -86,7 +81,17 @@ final class BalanceItemView: UIView, BalanceItemInterface {
         currencyLabel.font = .systemFont(ofSize: CGFloat(dto.amount.value.fontSize), weight: .medium)
         currencyLabel.textColor = UIColor(named: dto.amount.value.color)
         
+        setupActionButtonItems(items: dto.items)
+        
         buildLayout()
+    }
+    
+    private func setupActionButtonItems(items: [HomeBalanceItem]) {
+        for item in items {
+            let actionButton = DesignSystem.BaseComponents.toBalanceActionButton()
+            actionButton.setDTO(dto: .init(imageName: "iphone", text: item.title))
+            actionButtonStackView.addArrangedSubview(actionButton)
+        }
     }
     
     private func buildLayout() {
@@ -102,17 +107,13 @@ final class BalanceItemView: UIView, BalanceItemInterface {
         backgroundRoundView.addSubview(valueLabel)
         backgroundRoundView.addSubview(arrowImage)
         backgroundRoundView.addSubview(actionButtonStackView)
-        actionButtonStackView.addArrangedSubview(button1)
-        actionButtonStackView.addArrangedSubview(button2)
-        actionButtonStackView.addArrangedSubview(button3)
-        actionButtonStackView.addArrangedSubview(button4)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             backgroundRoundView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             backgroundRoundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            backgroundRoundView.heightAnchor.constraint(equalToConstant: 75),
+            backgroundRoundView.heightAnchor.constraint(equalToConstant: 85),
             backgroundRoundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
             backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
             
@@ -130,8 +131,8 @@ final class BalanceItemView: UIView, BalanceItemInterface {
             
             arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 5),
             arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5),
-            arrowImage.heightAnchor.constraint(equalToConstant: 15),
-            arrowImage.widthAnchor.constraint(equalToConstant: 10),
+            arrowImage.heightAnchor.constraint(equalToConstant: 17),
+            arrowImage.widthAnchor.constraint(equalToConstant: 12),
             
             actionButtonStackView.topAnchor.constraint(equalTo: valueLabel.bottomAnchor),
             actionButtonStackView.widthAnchor.constraint(equalTo: backgroundRoundView.widthAnchor),

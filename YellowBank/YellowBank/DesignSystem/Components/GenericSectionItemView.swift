@@ -99,8 +99,8 @@ final class GenericSectionItemView: UIView, GenericSectionItemInterface {
             
             arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 5),
             arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5),
-            arrowImage.heightAnchor.constraint(equalToConstant: 15),
-            arrowImage.widthAnchor.constraint(equalToConstant: 10)
+            arrowImage.heightAnchor.constraint(equalToConstant: 17),
+            arrowImage.widthAnchor.constraint(equalToConstant: 12),
         ])
     }
 }

@@ -6,28 +6,21 @@
 //
 import UIKit
 
-final class BalanceActionButtonView: UIView {
-    private lazy var backgroundRoundView: UIView = {
-        let view = UIView()
-        // alterar cor quando for circular
-//        view.backgroundColor = .lightGray
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+final class BalanceActionButtonView: UIView, BalanceActionButtonInterface {
+    private var buttonHeightWidth: CGFloat = 60
     
     private lazy var button: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "iphone"), for: .normal)
         button.tintColor = .black
         button.backgroundColor = .clear
+        button.backgroundColor = UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 0.3)
+        button.layer.cornerRadius = buttonHeightWidth / 2
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "teste"
-        titleLabel.font = .systemFont(ofSize: CGFloat(14), weight: .light)
         titleLabel.backgroundColor = .clear
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
@@ -43,6 +36,14 @@ final class BalanceActionButtonView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setDTO(dto: BalanceActionButtonDTO) {
+        button.setImage(UIImage(systemName: dto.imageName), for: .normal)
+        titleLabel.text = dto.text.text
+        titleLabel.font = .systemFont(ofSize: CGFloat(dto.text.fontSize), weight: .medium)
+        titleLabel.textColor = UIColor(named: dto.text.color)
+        buildLayout()
+    }
+    
     private func buildLayout() {
         backgroundColor = .clear
         translatesAutoresizingMaskIntoConstraints = false
@@ -51,25 +52,26 @@ final class BalanceActionButtonView: UIView {
     }
     
     private func setupViews() {
-        addSubview(backgroundRoundView)
-        backgroundRoundView.addSubview(button)
-        backgroundRoundView.addSubview(titleLabel)
+        addSubview(button)
+        addSubview(titleLabel)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            backgroundRoundView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            backgroundRoundView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            backgroundRoundView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
-            backgroundRoundView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
-            
-            button.centerXAnchor.constraint(equalTo: backgroundRoundView.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: backgroundRoundView.centerYAnchor),
-            button.heightAnchor.constraint(equalToConstant: 60),
-            button.widthAnchor.constraint(equalToConstant: 60),
+            button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            button.heightAnchor.constraint(equalToConstant: buttonHeightWidth),
+            button.widthAnchor.constraint(equalToConstant: buttonHeightWidth),
             
             titleLabel.centerXAnchor.constraint(equalTo: button.centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: button.bottomAnchor)
+            titleLabel.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 5)
         ])
     }
 }
+
+//enum ImageName: String {
+//    case pixIcon = "pix-icon"
+//    case transferIcon = "transfer-money-icon"
+//    case qrCodeIcon = "qr-code-icon"
+//    case cellphoneIcon = "cellphone-icon"
+//}
