@@ -22,6 +22,8 @@ final class YellowBankImage: UIImageView, ImageInterface {
             image = UIImage(systemName: "qrcode") ?? UIImage()
         case .cellphoneIcon:
             image = UIImage(systemName: "iphone.and.arrow.left.and.arrow.right.inward") ?? UIImage()
+        case .mastercardIcon:
+            image = UIImage(systemName: "iphone") ?? UIImage()
         }
         return image
     }

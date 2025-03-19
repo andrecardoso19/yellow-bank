@@ -53,3 +53,27 @@ struct BalanceCellFactory: CellMaker, Equatable {
         lhs.balanceCellDTO.amount.value.text == rhs.balanceCellDTO.amount.value.text
     }
 }
+
+struct CreditCardInfoCellFactory: CellMaker, Equatable {
+    typealias Cell = CreditCardInfoCell
+
+    private let creditCardInfoCellDto: Cell.DTO
+
+    init(creditCardInfoCellDto: Cell.DTO) {
+        self.creditCardInfoCellDto = creditCardInfoCellDto
+    }
+
+    func makeHeader(for tableView: UITableView) -> UIView {
+        .init()
+    }
+
+    func makeCell() -> UITableViewCell {
+        let cell = CreditCardInfoCell(dto: creditCardInfoCellDto)
+        cell.setup(with: creditCardInfoCellDto)
+        return cell
+    }
+
+    static func == (lhs: CreditCardInfoCellFactory, rhs: CreditCardInfoCellFactory) -> Bool {
+        lhs.creditCardInfoCellDto.title.text == rhs.creditCardInfoCellDto.title.text
+    }
+}

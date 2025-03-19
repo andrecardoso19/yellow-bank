@@ -32,7 +32,9 @@ extension HomePresenter: HomePresenting {
                     presentGenericSection(itemContent: item.content)
                 )
             case .creditCard:
-                break
+                cells.append(
+                    presentCreditCardSection(itemContent: item.content)
+                )
             }
         }
         
@@ -47,25 +49,28 @@ extension HomePresenter: HomePresenting {
 private extension HomePresenter {
     func presentGenericSection(itemContent: HomeItemContent) -> CellFactory {
         let dto = GenericSectionCellDTO(
-            title: HomeTitle(
-                text: itemContent.title?.text ?? "",
-                fontSize: itemContent.title?.fontSize ?? 0,
-                color: itemContent.title?.color ?? ""
-            ),
-            subtitle: HomeTitle(
-                text: itemContent.subtitle?.text ?? "",
-                fontSize: itemContent.subtitle?.fontSize ?? 0,
-                color: itemContent.subtitle?.color ?? ""
-            )
+            title: itemContent.title ?? .init(),
+            subtitle: itemContent.subtitle ?? .init()
         )
         return CellFactory(wrappedInstance: GenericSectionCellFactory(genericSectionCellDTO: dto))
     }
     
     func presentBalanceSection(itemContent: HomeItemContent) -> CellFactory {
         let dto = BalanceCellDTO(
-            amount: itemContent.amount ?? .init(currencySymbol: "", value: .init(text: "", fontSize: 0, color: "")),
+            amount: itemContent.amount ?? .init(currencySymbol: "", value: .init()),
             items: itemContent.items ?? []
         )
         return CellFactory(wrappedInstance: BalanceCellFactory(balanceCellDTO: dto))
+    }
+    
+    func presentCreditCardSection(itemContent: HomeItemContent) -> CellFactory {
+        let dto = CreditCardInfoCellDTO(
+            title: itemContent.title ?? .init(),
+            subtitle: itemContent.subtitle ?? .init(),
+            value: itemContent.value ?? .init(),
+            dueDate: itemContent.dueDate ?? .init(),
+            icon: itemContent.icon ?? .mastercardIcon
+        )
+        return CellFactory(wrappedInstance: CreditCardInfoCellFactory(creditCardInfoCellDto: dto))
     }
 }

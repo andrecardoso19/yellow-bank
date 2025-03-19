@@ -50,14 +50,23 @@ final class NPSPresenterTests: XCTestCase {
         let expectedCells: [CellFactory] = [
             CellFactory(wrappedInstance: BalanceCellFactory(
                 balanceCellDTO: .init(
-                    amount: mock.items[0].content.amount ?? .init(currencySymbol: "", value: .init(text: "", fontSize: 0, color: "")),
+                    amount: mock.items[0].content.amount ?? .init(currencySymbol: "", value: .init()),
                     items: mock.items[0].content.items ?? []
                 )
             )),
             CellFactory(wrappedInstance: GenericSectionCellFactory(
                 genericSectionCellDTO: .init(
-                    title: mock.items[1].content.title ?? .init(text: "", fontSize: 0, color: ""),
-                    subtitle: mock.items[1].content.subtitle ?? .init(text: "", fontSize: 0, color: "")
+                    title: mock.items[1].content.title ?? .init(),
+                    subtitle: mock.items[1].content.subtitle ?? .init()
+                )
+            )),
+            CellFactory(wrappedInstance: CreditCardInfoCellFactory(
+                creditCardInfoCellDto: .init(
+                    title: mock.items[2].content.title ?? .init(),
+                    subtitle: mock.items[2].content.subtitle ?? .init(),
+                    value: mock.items[2].content.value ?? .init(),
+                    dueDate: mock.items[2].content.dueDate ?? .init(),
+                    icon: mock.items[2].content.icon ?? .mastercardIcon
                 )
             ))
         ]

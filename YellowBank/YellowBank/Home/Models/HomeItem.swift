@@ -21,7 +21,7 @@ struct HomeItemContent: Decodable {
     let title: HomeTitle?
     let subtitle: HomeTitle?
     
-    let icon: String?
+    let icon: ImageName?
     let value: HomeTitle?
     let dueDate: HomeTitle?
     

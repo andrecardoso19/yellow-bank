@@ -31,4 +31,10 @@ struct HomeTitle: Decodable {
         case text, color
         case fontSize = "font_size"
     }
+    
+    init(text: String = "", fontSize: Int = 0, color: String = "") {
+        self.text = text
+        self.fontSize = fontSize
+        self.color = color
+    }
 }

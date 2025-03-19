@@ -10,4 +10,5 @@ enum ImageName: String, Decodable {
     case transferIcon = "transfer-money-icon"
     case qrCodeIcon = "qr-code-icon"
     case cellphoneIcon = "cellphone-icon"
+    case mastercardIcon = "master-card-icon"
 }
