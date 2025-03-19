@@ -9,19 +9,19 @@ import XCTest
 @testable import YellowBank
 
 private class HomePresenterSpy: HomePresenting {
-    enum Message {
-        case displaySomething
-        case displayError
-    }
-
-    private(set) var messages: [Message] = []
-
-    func displaySomething() {
-        messages.append(.displaySomething)
+    
+    var presentHomeCount = 0
+    var presentHomeResponse: HomeResponse = HomeResponseMock.responseMockEmpty
+    func presentHome(homeResponse: YellowBank.HomeResponse) {
+        presentHomeCount += 1
+        presentHomeResponse = homeResponse
     }
     
-    func displayError() {
-        messages.append(.displayError)
+    var displayErrorCount = 0
+    var displayErrorType = HomeApiError.decodeFail
+    func displayError(error: YellowBank.HomeApiError) {
+        displayErrorCount += 1
+        displayErrorType = error
     }
 }
 
@@ -60,16 +60,30 @@ final class HomeInteractorTests: XCTestCase {
         args.serviceMock.getDataResult = .failure(.decodeFail)
         args.sut.loadData()
         
-        XCTAssertEqual(args.presenterSpy.messages, [.displayError])
+        XCTAssertEqual(args.presenterSpy.displayErrorCount, 1)
+        XCTAssertEqual(args.presenterSpy.displayErrorType, .decodeFail)
     }
     
     func testLoadSomething_WhenSuccess_ShouldPresenterDisplaySomething() {
         let args = makeSUT()
+        let responseMock = HomeResponseMock.responseMock
         
-        args.serviceMock.getDataResult = .success(HomeResponseMock.responseMock)
+        args.serviceMock.getDataResult = .success(responseMock)
         args.sut.loadData()
         
-        XCTAssertEqual(args.presenterSpy.messages, [.displaySomething])
+        XCTAssertEqual(args.presenterSpy.presentHomeCount, 1)
+        XCTAssertEqual(args.presenterSpy.presentHomeResponse, responseMock)
+    }
+    
+    func testLoadSomething_WhenSuccessAndEmpty_ShouldPresenterDisplayError() {
+        let args = makeSUT()
+        let responseMock = HomeResponseMock.responseMockEmpty
+        
+        args.serviceMock.getDataResult = .success(responseMock)
+        args.sut.loadData()
+        
+        XCTAssertEqual(args.presenterSpy.displayErrorCount, 1)
+        XCTAssertEqual(args.presenterSpy.displayErrorType, .emptyData)
     }
 }
 
@@ -191,6 +205,98 @@ struct HomeResponseMock {
                     icon: nil,
                     value: nil,
                     dueDate: nil
+                )
+            )
+        ]
+    )
+    
+    static let responseMockEmpty: HomeResponse = .init(
+        header: HomeHeader(title: HomeTitle(text: "", fontSize: 0, color: "")),
+        items: []
+    )
+    
+    static let responseMockEachSectionType: HomeResponse = .init(
+        header: HomeHeader(title: HomeTitle(text: "Olá, Pedro",
+                                            fontSize: 24,
+                                            color: "#CCCCCC")),
+        items: [
+            HomeItem(
+                id: .balanceSection,
+                type: .balance,
+                content: HomeItemContent(
+                    amount: .init(currencySymbol: "R$",
+                                  value: .init(text: "90,93",
+                                               fontSize: 28,
+                                               color: "#000000")),
+                    items: [
+                        HomeBalanceItem(
+                            id: "pix",
+                            title: HomeTitle(text: "Pix",
+                                             fontSize: 14,
+                                             color: "#CCCCCC"),
+                            icon: "pix-icon",
+                            deeplink: "swiftbankapp://pix"
+                        ),
+                        HomeBalanceItem(
+                            id: "transferir",
+                            title: HomeTitle(text: "Transferir",
+                                             fontSize: 14,
+                                             color: "#CCCCCC"),
+                            icon: "transfer-money-icon",
+                            deeplink: nil
+                        ),
+                        HomeBalanceItem(
+                            id: "qr-code",
+                            title: HomeTitle(text: "QR-code",
+                                             fontSize: 14,
+                                             color: "#CCCCCC"),
+                            icon: "qr-code-icon",
+                            deeplink: nil
+                        )
+                    ],
+                    title: nil,
+                    subtitle: nil,
+                    icon: nil,
+                    value: nil,
+                    dueDate: nil
+                )
+            ),
+            HomeItem(
+                id: .genericSection,
+                type: .genericSection,
+                content: HomeItemContent(
+                    amount: nil,
+                    items: nil,
+                    title: HomeTitle(text: "Empréstimos",
+                                     fontSize: 16,
+                                     color: "#CCCCCC"),
+                    subtitle: HomeTitle(text: "Simule seu crédito e antecipe seus planos",
+                                        fontSize: 12,
+                                        color: "#CCCCCC"),
+                    icon: nil,
+                    value: nil,
+                    dueDate: nil
+                )
+            ),
+            HomeItem(
+                id: .creditCard,
+                type: .creditCard,
+                content: HomeItemContent(
+                    amount: nil,
+                    items: nil,
+                    title: HomeTitle(text: "Cartão final 9999",
+                                     fontSize: 16,
+                                     color: "#CCCCCC"),
+                    subtitle: HomeTitle(text: "Limite disponível",
+                                        fontSize: 12,
+                                        color: "#CCCCCC"),
+                    icon: "master-card-icon",
+                    value: HomeTitle(text: "R$ 9.074,00",
+                                     fontSize: 17,
+                                     color: "#CCCCCC"),
+                    dueDate: HomeTitle(text: "Vence em 04/05",
+                                       fontSize: 12,
+                                       color: "#CCCCCC")
                 )
             )
         ]

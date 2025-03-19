@@ -11,7 +11,7 @@ final class GenericSectionCell: UITableViewCell {
     private var dto: GenericSectionCellDTO
     private lazy var genericSectionItem = DesignSystem.toGenericSectionItem()
     
-    init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, dto: GenericSectionCellDTO) {
+    init(style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = nil, dto: GenericSectionCellDTO) {
         self.dto = dto
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -43,9 +43,8 @@ final class GenericSectionCell: UITableViewCell {
     }
 }
 
-extension GenericSectionCell {
-    struct GenericSectionCellDTO {
-        let title: HomeTitle
-        let subtitle: HomeTitle
-    }
+struct GenericSectionCellDTO {
+    let title: HomeTitle
+    let subtitle: HomeTitle
 }
+

@@ -4,7 +4,11 @@
 //
 //  Created by André  Aragão on 18/03/25.
 //
-struct HomeItem: Decodable {
+struct HomeItem: Decodable, Equatable {
+    static func == (lhs: HomeItem, rhs: HomeItem) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     let id: HomeItemId
     let type: HomeItemType
     let content: HomeItemContent

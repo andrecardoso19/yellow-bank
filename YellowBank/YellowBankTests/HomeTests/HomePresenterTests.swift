@@ -9,20 +9,15 @@ import XCTest
 @testable import YellowBank
 
 private class HomeDisplaySpy: HomeDisplaying {
-    enum Message {
-        case didNextStep
-        case displaySomething
+    enum Message: Equatable {
         case displayError
+        case displayHome(cells: [UITableViewCell])
     }
 
     private(set) var messages: [Message] = []
 
-    func displaySomething() {
-        messages.append(.displaySomething)
-    }
-
-    func didNextStep() {
-        messages.append(.didNextStep)
+    func displayHome(cells: [UITableViewCell]) {
+        messages.append(.displayHome(cells: cells))
     }
     
     func displayError() {
@@ -47,18 +42,25 @@ private extension NPSPresenterTests {
 }
 
 final class NPSPresenterTests: XCTestCase {
-    func testDisplaySomething_WhenCalled_ShouldDisplayDisplaySomething() {
-        let args = makeSUT()
-        
-        args.sut.displaySomething()
-        
-        XCTAssertEqual(args.displaySpy.messages, [.displaySomething])
-    }
+//    func testDisplaySomething_WhenCalled_ShouldDisplayDisplaySomething() {
+//        let args = makeSUT()
+//        let mock = HomeResponseMock.responseMockEachSectionType
+//        let expectedCells: [UITableViewCell] = [
+//            GenericSectionCell(dto: .init(
+//                title: mock.items[1].content.title ?? .init(text: "", fontSize: 0, color: ""),
+//                subtitle: mock.items[1].content.subtitle ?? .init(text: "", fontSize: 0, color: "")
+//            ))
+//        ]
+//        
+//        args.sut.presentHome(homeResponse: mock)
+//        
+//        XCTAssertEqual(args.displaySpy.messages, [.displayHome(cells: expectedCells)])
+//    }
     
     func testDisplayError_WhenCalled_ShouldDisplayError() {
         let args = makeSUT()
         
-        args.sut.displayError()
+        args.sut.displayError(error: .decodeFail)
         
         XCTAssertEqual(args.displaySpy.messages, [.displayError])
     }

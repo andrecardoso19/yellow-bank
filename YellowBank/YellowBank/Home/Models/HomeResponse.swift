@@ -5,12 +5,20 @@
 //  Created by André  Aragão on 18/03/25.
 //
 
-struct HomeResponse: Decodable {
+struct HomeResponse: Equatable, Decodable {
+    static func == (lhs: HomeResponse, rhs: HomeResponse) -> Bool {
+        lhs.header == rhs.header && lhs.items == rhs.items
+    }
+    
     let header: HomeHeader
     let items: [HomeItem]
 }
 
-struct HomeHeader: Decodable {
+struct HomeHeader: Decodable, Equatable {
+    static func == (lhs: HomeHeader, rhs: HomeHeader) -> Bool {
+        lhs.title.text == rhs.title.text
+    }
+    
     let title: HomeTitle
 }
 

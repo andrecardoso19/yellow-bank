@@ -27,22 +27,24 @@ extension HomeInteractor: HomeInteracting {
             guard let self else { return }
             switch result {
             case .success(let homeResponse):
-                presenter.displaySomething()
+                handleSuccess(homeResponse: homeResponse)
             case .failure(let error):
-                switch error {
-                case .decodeFail:
-                    handleError(error: error)
-                }
+                handleError(error: error)
             }
         }
     }
 }
 
 private extension HomeInteractor {
-    func handleError(error: HomeApiError) {
-        switch error {
-        case .decodeFail:
-            presenter.displayError()
+    func handleSuccess(homeResponse: HomeResponse) {
+        if homeResponse.items.isEmpty || homeResponse.header.title.text.isEmpty {
+            handleError(error: .emptyData)
+            return
         }
+        presenter.presentHome(homeResponse: homeResponse)
+    }
+    
+    func handleError(error: HomeApiError) {
+        presenter.displayError(error: error)
     }
 }

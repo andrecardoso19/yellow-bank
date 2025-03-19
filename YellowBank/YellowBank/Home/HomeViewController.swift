@@ -8,12 +8,13 @@
 import UIKit
 
 protocol HomeDisplaying: AnyObject {
-    func displaySomething()
+    func displayHome(cells: [UITableViewCell])
     func displayError()
 }
 
 final class HomeViewController: UIViewController {
     private let interactor: HomeInteracting
+    private var cells: [UITableViewCell] = []
     
     private lazy var backgroundLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
@@ -47,6 +48,8 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        buildLayout()
+        tableView.reloadData()
         interactor.loadData()
     }
     
@@ -76,25 +79,18 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        cells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        GenericSectionCell(style: .default, reuseIdentifier: nil, dto: GenericSectionCell.GenericSectionCellDTO(
-            title: HomeTitle(text: "Poupança",
-                             fontSize: 16,
-                             color: "#CCCCCC"),
-            subtitle: HomeTitle(text: "Guarde dinheiro e realize grandes sonhos",
-                                fontSize: 12,
-                                color: "#CCCCCC")))
+        cells[indexPath.row]
     }
 }
 
 // MARK: - HomeDisplaying
 extension HomeViewController: HomeDisplaying {
-    func displaySomething() {
-        // a fazer
-        buildLayout()
+    func displayHome(cells: [UITableViewCell]) {
+        self.cells = cells
         tableView.reloadData()
     }
     
@@ -102,5 +98,3 @@ extension HomeViewController: HomeDisplaying {
         // a fazer
     }
 }
-
-

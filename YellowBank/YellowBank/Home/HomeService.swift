@@ -31,4 +31,5 @@ extension HomeService: HomeServicing {
 
 enum HomeApiError: Error {
     case decodeFail
+    case emptyData
 }
