@@ -15,7 +15,7 @@ final class YellowBankImage: UIImageView, ImageInterface {
         var image: UIImage = UIImage()
         switch imageName {
         case .pixIcon:
-            image = UIImage(systemName: "iphone") ?? UIImage()
+            image = UIImage(named: "pix") ?? UIImage()
         case .transferIcon:
             image = UIImage(systemName: "banknote") ?? UIImage()
         case .qrCodeIcon:

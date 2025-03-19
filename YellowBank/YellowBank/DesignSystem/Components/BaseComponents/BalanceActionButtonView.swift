@@ -39,10 +39,14 @@ final class BalanceActionButtonView: UIView, BalanceActionButtonInterface {
     func setDTO(dto: BalanceActionButtonDTO) {
         let imageComponent = DesignSystem.BaseComponents.toImage()
         imageComponent.setDTO(dto: ImageDTO(imageName: dto.imageName))
+        
         button.setImage(imageComponent.image, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
+        
         titleLabel.text = dto.text.text
         titleLabel.font = .systemFont(ofSize: CGFloat(dto.text.fontSize), weight: .medium)
         titleLabel.textColor = UIColor(named: dto.text.color)
+        
         buildLayout()
     }
     
