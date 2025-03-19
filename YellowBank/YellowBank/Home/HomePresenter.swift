@@ -24,7 +24,9 @@ extension HomePresenter: HomePresenting {
         for item in homeResponse.items {
             switch item.id {
             case .balanceSection:
-                break
+                cells.append(
+                    presentBalanceSection(itemContent: item.content)
+                )
             case .genericSection:
                 cells.append(
                     presentGenericSection(itemContent: item.content)
@@ -57,5 +59,13 @@ private extension HomePresenter {
             )
         )
         return CellFactory(wrappedInstance: GenericSectionCellFactory(genericSectionCellDTO: dto))
+    }
+    
+    func presentBalanceSection(itemContent: HomeItemContent) -> CellFactory {
+        let dto = BalanceCellDTO(
+            amount: itemContent.amount ?? .init(currencySymbol: "", value: .init(text: "", fontSize: 0, color: "")),
+            items: itemContent.items ?? []
+        )
+        return CellFactory(wrappedInstance: BalanceCellFactory(balanceCellDTO: dto))
     }
 }

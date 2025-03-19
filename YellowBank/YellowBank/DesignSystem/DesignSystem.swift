@@ -11,4 +11,7 @@ enum DesignSystem {
     static func toGenericSectionItem() -> GenericSectionItemInterface {
         return GenericSectionItemView()
     }
+    static func toBalanceItem() -> BalanceItemInterface {
+        return BalanceItemView()
+    }
 }

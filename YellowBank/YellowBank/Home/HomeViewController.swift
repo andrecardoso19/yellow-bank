@@ -32,6 +32,7 @@ final class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(GenericSectionCell.self, forCellReuseIdentifier: GenericSectionCell.reuseId)
+        tableView.register(BalanceCell.self, forCellReuseIdentifier: BalanceCell.reuseId)
         
         return tableView
     }()
