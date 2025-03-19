@@ -17,6 +17,12 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
         return view
     }()
     
+    private lazy var cardFlagImageView: UIImageView = {
+        let cardFlagImageView = UIImageView()
+        cardFlagImageView.translatesAutoresizingMaskIntoConstraints = false
+        return cardFlagImageView
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -39,10 +45,25 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
         return imageView
     }()
     
+    private lazy var valueLabel: UILabel = {
+        let valueLabel = UILabel()
+        valueLabel.translatesAutoresizingMaskIntoConstraints = false
+        return valueLabel
+    }()
+    
+    private lazy var dueDateLabel: UILabel = {
+        let valueLabel = UILabel()
+        valueLabel.translatesAutoresizingMaskIntoConstraints = false
+        return valueLabel
+    }()
+    
     init() {
         dto = CreditCardInfoItemDTO(
-            title: HomeTitle(text: "", fontSize: 0, color: ""),
-            subtitle: HomeTitle(text: "", fontSize: 0, color: "")
+            title: .init(),
+            subtitle: .init(),
+            value: .init(),
+            dueDate: .init(),
+            icon: .mastercardIcon
         )
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
@@ -66,6 +87,18 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
         subTitleLabel.text = dto.subtitle.text
         subTitleLabel.textColor = .white
         
+        valueLabel.font = .systemFont(ofSize: CGFloat(dto.value.fontSize), weight: .medium)
+        valueLabel.text = dto.value.text
+        valueLabel.textColor = .white
+        
+        dueDateLabel.font = .systemFont(ofSize: CGFloat(dto.dueDate.fontSize), weight: .medium)
+        dueDateLabel.text = dto.dueDate.text
+        dueDateLabel.textColor = .white
+        
+        let imageComponent = DesignSystem.BaseComponents.toImage()
+        imageComponent.setDTO(dto: .init(imageName: dto.icon))
+        cardFlagImageView.image = imageComponent.image
+        
         buildLayout()
     }
     
@@ -77,9 +110,12 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
     private func setupViews() {
         backgroundColor = .clear
         addSubview(backgroundRoundView)
+        backgroundRoundView.addSubview(cardFlagImageView)
         backgroundRoundView.addSubview(titleLabel)
         backgroundRoundView.addSubview(subTitleLabel)
         backgroundRoundView.addSubview(arrowImage)
+        backgroundRoundView.addSubview(valueLabel)
+        backgroundRoundView.addSubview(dueDateLabel)
     }
     
     private func setupConstraints() {
@@ -90,15 +126,30 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
             backgroundRoundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
             backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
             
-            titleLabel.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
+            cardFlagImageView.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 10),
+            cardFlagImageView.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 5),
+            cardFlagImageView.heightAnchor.constraint(equalToConstant: 50),
+            cardFlagImageView.widthAnchor.constraint(equalToConstant: 50),
+            
+            titleLabel.centerYAnchor.constraint(equalTo: cardFlagImageView.centerYAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: cardFlagImageView.trailingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
             titleLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            subTitleLabel.topAnchor.constraint(equalTo: cardFlagImageView.bottomAnchor, constant: -10),
             subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
             subTitleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
             subTitleLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            valueLabel.topAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: -5),
+            valueLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
+            valueLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
+            valueLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            dueDateLabel.topAnchor.constraint(equalTo: valueLabel.bottomAnchor, constant: -5),
+            dueDateLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
+            dueDateLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
+            dueDateLabel.heightAnchor.constraint(equalToConstant: 30),
             
             arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 5),
             arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5),

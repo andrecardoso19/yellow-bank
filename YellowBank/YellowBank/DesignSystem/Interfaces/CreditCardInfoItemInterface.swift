@@ -13,4 +13,7 @@ protocol CreditCardInfoItemInterface: UIView {
 struct CreditCardInfoItemDTO {
     let title: HomeTitle
     let subtitle: HomeTitle
+    let value: HomeTitle
+    let dueDate: HomeTitle
+    let icon: ImageName
 }

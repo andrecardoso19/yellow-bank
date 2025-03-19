@@ -46,7 +46,15 @@ extension CreditCardInfoCell: ConfigurableCell {
     typealias DTO = CreditCardInfoCellDTO
     
     func setup(with DTO: CreditCardInfoCellDTO) {
-        genericSectionItem.setDTO(dto: .init(title: dto.title, subtitle: dto.subtitle))
+        genericSectionItem.setDTO(
+            dto: .init(
+                title: dto.title,
+                subtitle: dto.subtitle,
+                value: dto.value,
+                dueDate: dto.dueDate,
+                icon: DTO.icon
+            )
+        )
         buildLayout()
     }
 }
