@@ -48,6 +48,12 @@ final class NPSPresenterTests: XCTestCase {
         let args = makeSUT()
         let mock = HomeResponseMock.responseMockEachSectionType
         let expectedCells: [CellFactory] = [
+            CellFactory(wrappedInstance: BalanceCellFactory(
+                balanceCellDTO: .init(
+                    amount: mock.items[0].content.amount ?? .init(currencySymbol: "", value: .init(text: "", fontSize: 0, color: "")),
+                    items: mock.items[0].content.items ?? []
+                )
+            )),
             CellFactory(wrappedInstance: GenericSectionCellFactory(
                 genericSectionCellDTO: .init(
                     title: mock.items[1].content.title ?? .init(text: "", fontSize: 0, color: ""),

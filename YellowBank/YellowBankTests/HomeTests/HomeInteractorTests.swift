@@ -108,7 +108,7 @@ struct HomeResponseMock {
                             title: HomeTitle(text: "Pix",
                                              fontSize: 14,
                                              color: "#CCCCCC"),
-                            icon: "pix-icon",
+                            icon: ImageName.pixIcon,
                             deeplink: "swiftbankapp://pix"
                         ),
                         HomeBalanceItem(
@@ -116,7 +116,7 @@ struct HomeResponseMock {
                             title: HomeTitle(text: "Transferir",
                                              fontSize: 14,
                                              color: "#CCCCCC"),
-                            icon: "transfer-money-icon",
+                            icon: ImageName.transferIcon,
                             deeplink: nil
                         ),
                         HomeBalanceItem(
@@ -124,7 +124,7 @@ struct HomeResponseMock {
                             title: HomeTitle(text: "QR-code",
                                              fontSize: 14,
                                              color: "#CCCCCC"),
-                            icon: "qr-code-icon",
+                            icon: ImageName.qrCodeIcon,
                             deeplink: nil
                         )
                     ],
@@ -234,7 +234,7 @@ struct HomeResponseMock {
                             title: HomeTitle(text: "Pix",
                                              fontSize: 14,
                                              color: "#CCCCCC"),
-                            icon: "pix-icon",
+                            icon: ImageName.pixIcon,
                             deeplink: "swiftbankapp://pix"
                         ),
                         HomeBalanceItem(
@@ -242,7 +242,7 @@ struct HomeResponseMock {
                             title: HomeTitle(text: "Transferir",
                                              fontSize: 14,
                                              color: "#CCCCCC"),
-                            icon: "transfer-money-icon",
+                            icon: ImageName.transferIcon,
                             deeplink: nil
                         ),
                         HomeBalanceItem(
@@ -250,7 +250,7 @@ struct HomeResponseMock {
                             title: HomeTitle(text: "QR-code",
                                              fontSize: 14,
                                              color: "#CCCCCC"),
-                            icon: "qr-code-icon",
+                            icon: ImageName.qrCodeIcon,
                             deeplink: nil
                         )
                     ],
