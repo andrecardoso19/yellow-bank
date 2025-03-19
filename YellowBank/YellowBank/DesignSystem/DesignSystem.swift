@@ -19,5 +19,8 @@ enum DesignSystem {
         static func toBalanceActionButton() -> BalanceActionButtonInterface {
             return BalanceActionButtonView()
         }
+        static func toImage() -> ImageInterface {
+            return YellowBankImage()
+        }
     }
 }

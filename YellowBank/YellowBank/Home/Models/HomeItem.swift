@@ -34,7 +34,7 @@ struct HomeItemContent: Decodable {
 struct HomeBalanceItem: Decodable {
     let id: String
     let title: HomeTitle
-    let icon: String
+    let icon: ImageName
     let deeplink: String?
 }
 

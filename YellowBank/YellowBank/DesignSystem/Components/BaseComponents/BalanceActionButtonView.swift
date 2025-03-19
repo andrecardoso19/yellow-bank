@@ -37,7 +37,9 @@ final class BalanceActionButtonView: UIView, BalanceActionButtonInterface {
     }
     
     func setDTO(dto: BalanceActionButtonDTO) {
-        button.setImage(UIImage(systemName: dto.imageName), for: .normal)
+        let imageComponent = DesignSystem.BaseComponents.toImage()
+        imageComponent.setDTO(dto: ImageDTO(imageName: dto.imageName))
+        button.setImage(imageComponent.image, for: .normal)
         titleLabel.text = dto.text.text
         titleLabel.font = .systemFont(ofSize: CGFloat(dto.text.fontSize), weight: .medium)
         titleLabel.textColor = UIColor(named: dto.text.color)
@@ -68,10 +70,3 @@ final class BalanceActionButtonView: UIView, BalanceActionButtonInterface {
         ])
     }
 }
-
-//enum ImageName: String {
-//    case pixIcon = "pix-icon"
-//    case transferIcon = "transfer-money-icon"
-//    case qrCodeIcon = "qr-code-icon"
-//    case cellphoneIcon = "cellphone-icon"
-//}

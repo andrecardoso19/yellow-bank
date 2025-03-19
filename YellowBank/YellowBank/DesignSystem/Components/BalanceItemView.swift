@@ -89,7 +89,7 @@ final class BalanceItemView: UIView, BalanceItemInterface {
     private func setupActionButtonItems(items: [HomeBalanceItem]) {
         for item in items {
             let actionButton = DesignSystem.BaseComponents.toBalanceActionButton()
-            actionButton.setDTO(dto: .init(imageName: "iphone", text: item.title))
+            actionButton.setDTO(dto: .init(imageName: item.icon, text: item.title))
             actionButtonStackView.addArrangedSubview(actionButton)
         }
     }

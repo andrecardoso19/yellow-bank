@@ -11,6 +11,6 @@ protocol BalanceActionButtonInterface: UIView {
 }
 
 struct BalanceActionButtonDTO {
-    let imageName: String
+    let imageName: ImageName
     let text: HomeTitle
 }
