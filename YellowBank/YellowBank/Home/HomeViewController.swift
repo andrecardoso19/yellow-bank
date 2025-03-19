@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeDisplaying: AnyObject {
-    func displayHome(cells: [UITableViewCell])
+    func displayHome(cells: [CellFactory])
     func displayError()
 }
 
@@ -89,8 +89,10 @@ extension HomeViewController: UITableViewDataSource {
 
 // MARK: - HomeDisplaying
 extension HomeViewController: HomeDisplaying {
-    func displayHome(cells: [UITableViewCell]) {
-        self.cells = cells
+    func displayHome(cells: [CellFactory]) {
+        self.cells = cells.map{ factory in
+            factory.makeCell()
+        }
         tableView.reloadData()
     }
     

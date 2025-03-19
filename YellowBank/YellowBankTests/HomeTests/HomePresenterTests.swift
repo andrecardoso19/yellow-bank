@@ -11,13 +11,15 @@ import XCTest
 private class HomeDisplaySpy: HomeDisplaying {
     enum Message: Equatable {
         case displayError
-        case displayHome(cells: [UITableViewCell])
     }
 
     private(set) var messages: [Message] = []
 
-    func displayHome(cells: [UITableViewCell]) {
-        messages.append(.displayHome(cells: cells))
+    var displayHomeCount = 0
+    var displayHomeCells: [CellFactory] = []
+    func displayHome(cells: [CellFactory]) {
+        displayHomeCount += 1
+        displayHomeCells = cells
     }
     
     func displayError() {
@@ -42,20 +44,23 @@ private extension NPSPresenterTests {
 }
 
 final class NPSPresenterTests: XCTestCase {
-//    func testDisplaySomething_WhenCalled_ShouldDisplayDisplaySomething() {
-//        let args = makeSUT()
-//        let mock = HomeResponseMock.responseMockEachSectionType
-//        let expectedCells: [UITableViewCell] = [
-//            GenericSectionCell(dto: .init(
-//                title: mock.items[1].content.title ?? .init(text: "", fontSize: 0, color: ""),
-//                subtitle: mock.items[1].content.subtitle ?? .init(text: "", fontSize: 0, color: "")
-//            ))
-//        ]
-//        
-//        args.sut.presentHome(homeResponse: mock)
-//        
-//        XCTAssertEqual(args.displaySpy.messages, [.displayHome(cells: expectedCells)])
-//    }
+    func testDisplaySomething_WhenCalled_ShouldDisplayDisplaySomething() {
+        let args = makeSUT()
+        let mock = HomeResponseMock.responseMockEachSectionType
+        let expectedCells: [CellFactory] = [
+            CellFactory(wrappedInstance: GenericSectionCellFactory(
+                genericSectionCellDTO: .init(
+                    title: mock.items[1].content.title ?? .init(text: "", fontSize: 0, color: ""),
+                    subtitle: mock.items[1].content.subtitle ?? .init(text: "", fontSize: 0, color: "")
+                )
+            ))
+        ]
+        
+        args.sut.presentHome(homeResponse: mock)
+        
+        XCTAssertEqual(args.displaySpy.displayHomeCount, 1)
+        XCTAssertEqual(args.displaySpy.displayHomeCells.count, expectedCells.count)
+    }
     
     func testDisplayError_WhenCalled_ShouldDisplayError() {
         let args = makeSUT()

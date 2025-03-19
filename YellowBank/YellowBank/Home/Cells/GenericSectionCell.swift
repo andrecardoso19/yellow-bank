@@ -15,7 +15,6 @@ final class GenericSectionCell: UITableViewCell {
         self.dto = dto
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        genericSectionItem.setDTO(dto: .init(title: dto.title, subtitle: dto.subtitle))
         buildLayout()
     }
 
@@ -43,8 +42,16 @@ final class GenericSectionCell: UITableViewCell {
     }
 }
 
+extension GenericSectionCell: ConfigurableCell {
+    typealias DTO = GenericSectionCellDTO
+    
+    func setup(with DTO: GenericSectionCellDTO) {
+        genericSectionItem.setDTO(dto: .init(title: dto.title, subtitle: dto.subtitle))
+        buildLayout()
+    }
+}
+
 struct GenericSectionCellDTO {
     let title: HomeTitle
     let subtitle: HomeTitle
 }
-

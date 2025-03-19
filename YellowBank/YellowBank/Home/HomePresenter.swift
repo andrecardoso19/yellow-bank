@@ -19,7 +19,7 @@ final class HomePresenter {
 // MARK: - HomePresenting
 extension HomePresenter: HomePresenting {
     func presentHome(homeResponse: HomeResponse) {
-        var cells: [UITableViewCell] = []
+        var cells: [CellFactory] = []
         
         for item in homeResponse.items {
             switch item.id {
@@ -43,7 +43,7 @@ extension HomePresenter: HomePresenting {
 }
 
 private extension HomePresenter {
-    func presentGenericSection(itemContent: HomeItemContent) -> GenericSectionCell {
+    func presentGenericSection(itemContent: HomeItemContent) -> CellFactory {
         let dto = GenericSectionCellDTO(
             title: HomeTitle(
                 text: itemContent.title?.text ?? "",
@@ -56,6 +56,6 @@ private extension HomePresenter {
                 color: itemContent.subtitle?.color ?? ""
             )
         )
-        return GenericSectionCell(dto: dto)
+        return CellFactory(wrappedInstance: GenericSectionCellFactory(genericSectionCellDTO: dto))
     }
 }
