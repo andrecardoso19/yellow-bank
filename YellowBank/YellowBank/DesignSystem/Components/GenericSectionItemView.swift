@@ -13,6 +13,10 @@ final class GenericSectionItemView: UIView, GenericSectionItemInterface {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width:0, height:0.5);
+        view.layer.shadowRadius = 10;
+        view.layer.shadowOpacity = 0.13;
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

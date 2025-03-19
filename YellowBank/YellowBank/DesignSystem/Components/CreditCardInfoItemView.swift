@@ -14,6 +14,10 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
         view.backgroundColor = .black
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width:0, height:0.5);
+        view.layer.shadowRadius = 10;
+        view.layer.shadowOpacity = 0.13;
         return view
     }()
     
