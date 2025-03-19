@@ -7,21 +7,9 @@
 import UIKit
 
 final class GenericSectionItemView: UIView, GenericSectionItemInterface {
-    private var dto: GenericSectionItemDTO
-    
     private lazy var backgroundRoundView = DesignSystem.BaseComponents.toBaseRoundBackground()
-    
-    private lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        return titleLabel
-    }()
-    
-    private lazy var subTitleLabel: UILabel = {
-        let subTitleLabel = UILabel()
-        subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        return subTitleLabel
-    }()
+    private lazy var titleLabel = DesignSystem.BaseComponents.toBaseText()
+    private lazy var subTitleLabel = DesignSystem.BaseComponents.toBaseText()
     
     private lazy var arrowImage: UIImageView = {
         let imageView = UIImageView()
@@ -34,10 +22,6 @@ final class GenericSectionItemView: UIView, GenericSectionItemInterface {
     }()
     
     init() {
-        dto = GenericSectionItemDTO(
-            title: HomeTitle(text: "", fontSize: 0, color: ""),
-            subtitle: HomeTitle(text: "", fontSize: 0, color: "")
-        )
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
@@ -50,16 +34,20 @@ final class GenericSectionItemView: UIView, GenericSectionItemInterface {
     }
     
     func setDTO(dto: GenericSectionItemDTO) {
-        self.dto = dto
-        
-        titleLabel.font = .systemFont(ofSize: CGFloat(dto.title.fontSize), weight: .medium)
-        titleLabel.text = dto.title.text
-        titleLabel.textColor = UIColor(named: dto.title.color)
-        
-        subTitleLabel.font = .systemFont(ofSize: CGFloat(dto.subtitle.fontSize), weight: .medium)
-        subTitleLabel.text = dto.subtitle.text
-        subTitleLabel.textColor = UIColor(named: dto.subtitle.color)
-        
+        titleLabel.setDTO(
+            dto: .init(
+                text: dto.title.text,
+                fontSize: CGFloat(dto.title.fontSize),
+                textColor: UIColor(named: dto.title.color) ?? .black
+            )
+        )
+        subTitleLabel.setDTO(
+            dto: .init(
+                text: dto.subtitle.text,
+                fontSize: CGFloat(dto.subtitle.fontSize),
+                textColor: UIColor(named: dto.subtitle.color) ?? .black
+            )
+        )
         backgroundRoundView.setDTO(dto: .init(backgroundColor: .white))
         
         buildLayout()

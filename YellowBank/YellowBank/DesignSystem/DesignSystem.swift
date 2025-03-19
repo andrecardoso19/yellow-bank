@@ -18,6 +18,9 @@ enum DesignSystem {
         static func toBaseRoundBackground() -> BaseRoundBackgroundInterface {
             return BaseRoundBackgroundView()
         }
+        static func toBaseText() -> BaseTextInterface {
+            return BaseTextView()
+        }
     }
     
     enum Components {

@@ -7,9 +7,12 @@
 import UIKit
 
 final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
-    private var dto: CreditCardInfoItemDTO
-    
     private lazy var backgroundRoundView = DesignSystem.BaseComponents.toBaseRoundBackground()
+    private lazy var titleLabel = DesignSystem.BaseComponents.toBaseText()
+    private lazy var subTitleLabel = DesignSystem.BaseComponents.toBaseText()
+    private lazy var arrowImage = DesignSystem.BaseComponents.toBaseText()
+    private lazy var valueLabel = DesignSystem.BaseComponents.toBaseText()
+    private lazy var dueDateLabel = DesignSystem.BaseComponents.toBaseText()
     
     private lazy var cardFlagImageView: UIImageView = {
         let cardFlagImageView = UIImageView()
@@ -17,48 +20,7 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
         return cardFlagImageView
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        return titleLabel
-    }()
-    
-    private lazy var subTitleLabel: UILabel = {
-        let subTitleLabel = UILabel()
-        subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        return subTitleLabel
-    }()
-    
-    private lazy var arrowImage: UIImageView = {
-        let imageView = UIImageView()
-        let imageComponent = DesignSystem.BaseComponents.toImage()
-        imageComponent.setDTO(dto: .init(imageName: .arrowRight))
-        imageView.image = imageComponent.image
-        imageView.tintColor = .white
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private lazy var valueLabel: UILabel = {
-        let valueLabel = UILabel()
-        valueLabel.translatesAutoresizingMaskIntoConstraints = false
-        return valueLabel
-    }()
-    
-    private lazy var dueDateLabel: UILabel = {
-        let valueLabel = UILabel()
-        valueLabel.translatesAutoresizingMaskIntoConstraints = false
-        return valueLabel
-    }()
-    
     init() {
-        dto = CreditCardInfoItemDTO(
-            title: .init(),
-            subtitle: .init(),
-            value: .init(),
-            dueDate: .init(),
-            icon: .mastercardIcon
-        )
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
@@ -71,24 +33,34 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
     }
     
     func setDTO(dto: CreditCardInfoItemDTO) {
-        self.dto = dto
-        
-        titleLabel.font = .systemFont(ofSize: CGFloat(dto.title.fontSize), weight: .medium)
-        titleLabel.text = dto.title.text
-        titleLabel.textColor = .white
-        
-        subTitleLabel.font = .systemFont(ofSize: CGFloat(dto.subtitle.fontSize), weight: .medium)
-        subTitleLabel.text = dto.subtitle.text
-        subTitleLabel.textColor = .white
-        
-        valueLabel.font = .systemFont(ofSize: CGFloat(dto.value.fontSize), weight: .medium)
-        valueLabel.text = dto.value.text
-        valueLabel.textColor = .white
-        
-        dueDateLabel.font = .systemFont(ofSize: CGFloat(dto.dueDate.fontSize), weight: .medium)
-        dueDateLabel.text = dto.dueDate.text
-        dueDateLabel.textColor = .white
-        
+        titleLabel.setDTO(
+            dto: .init(
+                text: dto.title.text,
+                fontSize: CGFloat(dto.title.fontSize),
+                textColor: .white
+            )
+        )
+        subTitleLabel.setDTO(
+            dto: .init(
+                text: dto.subtitle.text,
+                fontSize: CGFloat(dto.subtitle.fontSize),
+                textColor: .white
+            )
+        )
+        valueLabel.setDTO(
+            dto: .init(
+                text: dto.value.text,
+                fontSize: CGFloat(dto.value.fontSize),
+                textColor: .white
+            )
+        )
+        dueDateLabel.setDTO(
+            dto: .init(
+                text: dto.dueDate.text,
+                fontSize: CGFloat(dto.dueDate.fontSize),
+                textColor: .white
+            )
+        )
         backgroundRoundView.setDTO(dto: .init(backgroundColor: .black))
         
         let imageComponent = DesignSystem.BaseComponents.toImage()

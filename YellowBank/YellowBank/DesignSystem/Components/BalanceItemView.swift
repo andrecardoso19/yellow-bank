@@ -7,27 +7,10 @@
 import UIKit
 
 final class BalanceItemView: UIView, BalanceItemInterface {
-    private var dto: BalanceItemDTO
-    
     private lazy var backgroundRoundView = DesignSystem.BaseComponents.toBaseRoundBackground()
-    
-    private lazy var balanceLabel: UILabel = {
-        let balanceLabel = UILabel()
-        balanceLabel.translatesAutoresizingMaskIntoConstraints = false
-        return balanceLabel
-    }()
-    
-    private lazy var currencyLabel: UILabel = {
-        let currencyLabel = UILabel()
-        currencyLabel.translatesAutoresizingMaskIntoConstraints = false
-        return currencyLabel
-    }()
-    
-    private lazy var valueLabel: UILabel = {
-        let valueLabel = UILabel()
-        valueLabel.translatesAutoresizingMaskIntoConstraints = false
-        return valueLabel
-    }()
+    private lazy var balanceLabel = DesignSystem.BaseComponents.toBaseText()
+    private lazy var currencyLabel = DesignSystem.BaseComponents.toBaseText()
+    private lazy var valueLabel = DesignSystem.BaseComponents.toBaseText()
     
     private lazy var arrowImage: UIImageView = {
         let imageView = UIImageView()
@@ -48,10 +31,6 @@ final class BalanceItemView: UIView, BalanceItemInterface {
     }()
     
     init() {
-        dto = BalanceItemDTO(
-            amount: .init(currencySymbol: "", value: .init(text: "", fontSize: 0, color: "")),
-            items: []
-        )
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
@@ -64,21 +43,30 @@ final class BalanceItemView: UIView, BalanceItemInterface {
     }
     
     func setDTO(dto: BalanceItemDTO) {
-        self.dto = dto
-        
-        balanceLabel.font = .systemFont(ofSize: CGFloat(17), weight: .medium)
-        balanceLabel.text = "Conta"
-        balanceLabel.textColor = .black
-        
-        valueLabel.font = .systemFont(ofSize: CGFloat(dto.amount.value.fontSize), weight: .medium)
-        valueLabel.text = dto.amount.value.text
-        valueLabel.textColor = UIColor(named: dto.amount.value.color)
-        
-        currencyLabel.text = dto.amount.currencySymbol
-        currencyLabel.font = .systemFont(ofSize: CGFloat(dto.amount.value.fontSize), weight: .medium)
-        currencyLabel.textColor = UIColor(named: dto.amount.value.color)
-        
-        backgroundRoundView.setDTO(dto: .init(backgroundColor: .white))
+        balanceLabel.setDTO(
+            dto: .init(
+                text: "Conta",
+                fontSize: 17,
+                textColor: .black
+            )
+        )
+        valueLabel.setDTO(
+            dto: .init(
+                text: dto.amount.value.text,
+                fontSize: CGFloat(dto.amount.value.fontSize),
+                textColor: UIColor(named: dto.amount.value.color) ?? .black)
+        )
+        currencyLabel.setDTO(
+            dto: .init(
+                text: dto.amount.currencySymbol,
+                fontSize: CGFloat(dto.amount.value.fontSize),
+                textColor: UIColor(named: dto.amount.value.color) ?? .black)
+        )
+        backgroundRoundView.setDTO(
+            dto: .init(
+                backgroundColor: .white
+            )
+        )
         
         setupActionButtonItems(items: dto.items)
         
