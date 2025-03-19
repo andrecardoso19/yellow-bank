@@ -97,8 +97,10 @@ final class GenericSectionItemView: UIView, GenericSectionItemInterface {
             subTitleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
             subTitleLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            arrowImage.centerYAnchor.constraint(equalTo: backgroundRoundView.centerYAnchor),
-            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5)
+            arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 5),
+            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5),
+            arrowImage.heightAnchor.constraint(equalToConstant: 15),
+            arrowImage.widthAnchor.constraint(equalToConstant: 10)
         ])
     }
 }

@@ -23,6 +23,12 @@ final class BalanceItemView: UIView, BalanceItemInterface {
         return balanceLabel
     }()
     
+    private lazy var currencyLabel: UILabel = {
+        let currencyLabel = UILabel()
+        currencyLabel.translatesAutoresizingMaskIntoConstraints = false
+        return currencyLabel
+    }()
+    
     private lazy var valueLabel: UILabel = {
         let valueLabel = UILabel()
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +41,19 @@ final class BalanceItemView: UIView, BalanceItemInterface {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
+    private lazy var actionButtonStackView: UIStackView = {
+        let actionButtonStackView = UIStackView()
+        actionButtonStackView.axis = .horizontal
+        actionButtonStackView.distribution = .fillProportionally
+        actionButtonStackView.translatesAutoresizingMaskIntoConstraints = false
+        return actionButtonStackView
+    }()
+    
+    private lazy var button1 = BalanceActionButtonView()
+    private lazy var button2 = BalanceActionButtonView()
+    private lazy var button3 = BalanceActionButtonView()
+    private lazy var button4 = BalanceActionButtonView()
     
     init() {
         dto = BalanceItemDTO(
@@ -63,6 +82,10 @@ final class BalanceItemView: UIView, BalanceItemInterface {
         valueLabel.text = dto.amount.value.text
         valueLabel.textColor = UIColor(named: dto.amount.value.color)
         
+        currencyLabel.text = dto.amount.currencySymbol
+        currencyLabel.font = .systemFont(ofSize: CGFloat(dto.amount.value.fontSize), weight: .medium)
+        currencyLabel.textColor = UIColor(named: dto.amount.value.color)
+        
         buildLayout()
     }
     
@@ -75,8 +98,14 @@ final class BalanceItemView: UIView, BalanceItemInterface {
         backgroundColor = .clear
         addSubview(backgroundRoundView)
         backgroundRoundView.addSubview(balanceLabel)
+        backgroundRoundView.addSubview(currencyLabel)
         backgroundRoundView.addSubview(valueLabel)
         backgroundRoundView.addSubview(arrowImage)
+        backgroundRoundView.addSubview(actionButtonStackView)
+        actionButtonStackView.addArrangedSubview(button1)
+        actionButtonStackView.addArrangedSubview(button2)
+        actionButtonStackView.addArrangedSubview(button3)
+        actionButtonStackView.addArrangedSubview(button4)
     }
     
     private func setupConstraints() {
@@ -92,13 +121,21 @@ final class BalanceItemView: UIView, BalanceItemInterface {
             balanceLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
             balanceLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            valueLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor),
-            valueLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
-            valueLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
-            valueLabel.heightAnchor.constraint(equalToConstant: 30),
+            currencyLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor),
+            currencyLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
+            currencyLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            arrowImage.centerYAnchor.constraint(equalTo: backgroundRoundView.centerYAnchor),
-            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5)
+            valueLabel.centerYAnchor.constraint(equalTo: currencyLabel.centerYAnchor),
+            valueLabel.leadingAnchor.constraint(equalTo: currencyLabel.trailingAnchor),
+            
+            arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 5),
+            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5),
+            arrowImage.heightAnchor.constraint(equalToConstant: 15),
+            arrowImage.widthAnchor.constraint(equalToConstant: 10),
+            
+            actionButtonStackView.topAnchor.constraint(equalTo: valueLabel.bottomAnchor),
+            actionButtonStackView.widthAnchor.constraint(equalTo: backgroundRoundView.widthAnchor),
+            actionButtonStackView.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
 }

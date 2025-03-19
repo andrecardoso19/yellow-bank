@@ -35,7 +35,7 @@ final class BalanceCell: UITableViewCell {
         NSLayoutConstraint.activate([
             balanceItem.topAnchor.constraint(equalTo: contentView.topAnchor),
             balanceItem.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            balanceItem.heightAnchor.constraint(equalToConstant: 140),
+            balanceItem.heightAnchor.constraint(equalToConstant: 160),
             balanceItem.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             balanceItem.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
