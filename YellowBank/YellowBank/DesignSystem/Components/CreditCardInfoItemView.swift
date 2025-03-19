@@ -9,17 +9,7 @@ import UIKit
 final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
     private var dto: CreditCardInfoItemDTO
     
-    private lazy var backgroundRoundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        view.layer.cornerRadius = 10
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width:0, height:0.5);
-        view.layer.shadowRadius = 10;
-        view.layer.shadowOpacity = 0.13;
-        return view
-    }()
+    private lazy var backgroundRoundView = DesignSystem.BaseComponents.toBaseRoundBackground()
     
     private lazy var cardFlagImageView: UIImageView = {
         let cardFlagImageView = UIImageView()
@@ -98,6 +88,8 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
         dueDateLabel.font = .systemFont(ofSize: CGFloat(dto.dueDate.fontSize), weight: .medium)
         dueDateLabel.text = dto.dueDate.text
         dueDateLabel.textColor = .white
+        
+        backgroundRoundView.setDTO(dto: .init(backgroundColor: .black))
         
         let imageComponent = DesignSystem.BaseComponents.toImage()
         imageComponent.setDTO(dto: .init(imageName: dto.icon))

@@ -15,6 +15,9 @@ enum DesignSystem {
         static func toImage() -> ImageInterface {
             return YellowBankImage()
         }
+        static func toBaseRoundBackground() -> BaseRoundBackgroundInterface {
+            return BaseRoundBackgroundView()
+        }
     }
     
     enum Components {

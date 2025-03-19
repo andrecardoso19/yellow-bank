@@ -9,17 +9,7 @@ import UIKit
 final class BalanceItemView: UIView, BalanceItemInterface {
     private var dto: BalanceItemDTO
     
-    private lazy var backgroundRoundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 10
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width:0, height:0.5);
-        view.layer.shadowRadius = 10;
-        view.layer.shadowOpacity = 0.13;
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var backgroundRoundView = DesignSystem.BaseComponents.toBaseRoundBackground()
     
     private lazy var balanceLabel: UILabel = {
         let balanceLabel = UILabel()
@@ -87,6 +77,8 @@ final class BalanceItemView: UIView, BalanceItemInterface {
         currencyLabel.text = dto.amount.currencySymbol
         currencyLabel.font = .systemFont(ofSize: CGFloat(dto.amount.value.fontSize), weight: .medium)
         currencyLabel.textColor = UIColor(named: dto.amount.value.color)
+        
+        backgroundRoundView.setDTO(dto: .init(backgroundColor: .white))
         
         setupActionButtonItems(items: dto.items)
         
