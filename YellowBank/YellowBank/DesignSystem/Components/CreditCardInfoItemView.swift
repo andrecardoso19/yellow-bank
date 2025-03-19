@@ -1,17 +1,17 @@
 //
-//  GenericSectionItemView.swift
+//  CreditCardInfoItemView.swift
 //  YellowBank
 //
-//  Created by André  Aragão on 18/03/25.
+//  Created by André  Aragão on 19/03/25.
 //
 import UIKit
 
-final class GenericSectionItemView: UIView, GenericSectionItemInterface {
-    private var dto: GenericSectionItemDTO
+final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
+    private var dto: CreditCardInfoItemDTO
     
     private lazy var backgroundRoundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -34,13 +34,13 @@ final class GenericSectionItemView: UIView, GenericSectionItemInterface {
         let imageComponent = DesignSystem.BaseComponents.toImage()
         imageComponent.setDTO(dto: .init(imageName: .arrowRight))
         imageView.image = imageComponent.image
-        imageView.tintColor = .black
+        imageView.tintColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     init() {
-        dto = GenericSectionItemDTO(
+        dto = CreditCardInfoItemDTO(
             title: HomeTitle(text: "", fontSize: 0, color: ""),
             subtitle: HomeTitle(text: "", fontSize: 0, color: "")
         )
@@ -55,16 +55,16 @@ final class GenericSectionItemView: UIView, GenericSectionItemInterface {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setDTO(dto: GenericSectionItemDTO) {
+    func setDTO(dto: CreditCardInfoItemDTO) {
         self.dto = dto
         
         titleLabel.font = .systemFont(ofSize: CGFloat(dto.title.fontSize), weight: .medium)
         titleLabel.text = dto.title.text
-        titleLabel.textColor = UIColor(named: dto.title.color)
+        titleLabel.textColor = .white
         
         subTitleLabel.font = .systemFont(ofSize: CGFloat(dto.subtitle.fontSize), weight: .medium)
         subTitleLabel.text = dto.subtitle.text
-        subTitleLabel.textColor = UIColor(named: dto.subtitle.color)
+        subTitleLabel.textColor = .white
         
         buildLayout()
     }
@@ -95,7 +95,7 @@ final class GenericSectionItemView: UIView, GenericSectionItemInterface {
             titleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
             titleLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
             subTitleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
             subTitleLabel.heightAnchor.constraint(equalToConstant: 30),
@@ -107,4 +107,5 @@ final class GenericSectionItemView: UIView, GenericSectionItemInterface {
         ])
     }
 }
+
 

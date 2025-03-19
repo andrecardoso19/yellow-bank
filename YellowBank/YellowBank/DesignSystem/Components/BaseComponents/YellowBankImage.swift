@@ -24,6 +24,8 @@ final class YellowBankImage: UIImageView, ImageInterface {
             image = UIImage(systemName: "iphone.and.arrow.left.and.arrow.right.inward") ?? UIImage()
         case .mastercardIcon:
             image = UIImage(systemName: "iphone") ?? UIImage()
+        case .arrowRight:
+            image = UIImage(systemName: ImageName.arrowRight.rawValue) ?? UIImage()
         }
         return image
     }

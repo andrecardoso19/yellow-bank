@@ -36,7 +36,10 @@ final class BalanceItemView: UIView, BalanceItemInterface {
     }()
     
     private lazy var arrowImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(systemName: "arrow.right"))
+        let imageView = UIImageView()
+        let imageComponent = DesignSystem.BaseComponents.toImage()
+        imageComponent.setDTO(dto: .init(imageName: .arrowRight))
+        imageView.image = imageComponent.image
         imageView.tintColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView

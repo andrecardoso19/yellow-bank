@@ -9,7 +9,7 @@ import UIKit
 final class GenericSectionCell: UITableViewCell {
     static let reuseId = "GenericSectionCell"
     private var dto: GenericSectionCellDTO
-    private lazy var genericSectionItem = DesignSystem.toGenericSectionItem()
+    private lazy var genericSectionItem = DesignSystem.Components.toGenericSectionItem()
     
     init(style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = nil, dto: GenericSectionCellDTO) {
         self.dto = dto

@@ -7,9 +7,9 @@
 import UIKit
 
 final class CreditCardInfoCell: UITableViewCell {
-    static let reuseId = "GenericSectionCell"
+    static let reuseId = "CreditCardInfoCell"
     private var dto: CreditCardInfoCellDTO
-    private lazy var genericSectionItem = DesignSystem.toGenericSectionItem()
+    private lazy var genericSectionItem = DesignSystem.Components.toCreditCardInfoItem()
     
     init(style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = nil, dto: CreditCardInfoCellDTO) {
         self.dto = dto
@@ -27,7 +27,7 @@ final class CreditCardInfoCell: UITableViewCell {
     }
     
     private func setupViews() {
-        backgroundColor = .red
+        backgroundColor = .clear
         contentView.addSubview(genericSectionItem)
     }
     
@@ -35,7 +35,7 @@ final class CreditCardInfoCell: UITableViewCell {
         NSLayoutConstraint.activate([
             genericSectionItem.topAnchor.constraint(equalTo: contentView.topAnchor),
             genericSectionItem.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            genericSectionItem.heightAnchor.constraint(equalToConstant: 70),
+            genericSectionItem.heightAnchor.constraint(equalToConstant: 150),
             genericSectionItem.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             genericSectionItem.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])

@@ -8,19 +8,24 @@
 import UIKit
 
 enum DesignSystem {
-    static func toGenericSectionItem() -> GenericSectionItemInterface {
-        return GenericSectionItemView()
-    }
-    static func toBalanceItem() -> BalanceItemInterface {
-        return BalanceItemView()
-    }
-    
     enum BaseComponents {
         static func toBalanceActionButton() -> BalanceActionButtonInterface {
             return BalanceActionButtonView()
         }
         static func toImage() -> ImageInterface {
             return YellowBankImage()
+        }
+    }
+    
+    enum Components {
+        static func toGenericSectionItem() -> GenericSectionItemInterface {
+            return GenericSectionItemView()
+        }
+        static func toBalanceItem() -> BalanceItemInterface {
+            return BalanceItemView()
+        }
+        static func toCreditCardInfoItem() -> CreditCardInfoItemInterface {
+            return CreditCardInfoItemView()
         }
     }
 }

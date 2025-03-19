@@ -7,9 +7,9 @@
 import UIKit
 
 final class BalanceCell: UITableViewCell {
-    static let reuseId = "GenericSectionCell"
+    static let reuseId = "BalanceCell"
     private var dto: BalanceCellDTO
-    private lazy var balanceItem = DesignSystem.toBalanceItem()
+    private lazy var balanceItem = DesignSystem.Components.toBalanceItem()
     
     init(style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = nil, dto: BalanceCellDTO) {
         self.dto = dto
