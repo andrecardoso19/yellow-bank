@@ -13,15 +13,20 @@ protocol HomeServicing {
 
 final class HomeService {
     let mockType: JSONType
-    init(mockType: JSONType) {
+    let mockString: String?
+    init(mockType: JSONType, mockString: String? = nil) {
         self.mockType = mockType
+        self.mockString = mockString
     }
 }
 
 // MARK: - HomeServicing
 extension HomeService: HomeServicing {
     func getData(completion: @escaping (Result<HomeResponse, HomeApiError>) -> Void) {
-        let JSON = FetchData.getData(type: mockType)
+        var JSON = FetchData.getData(type: mockType)
+        if let mockString {
+            JSON = mockString
+        }
         let jsonData = JSON.data(using: .utf8)!
         
         do {

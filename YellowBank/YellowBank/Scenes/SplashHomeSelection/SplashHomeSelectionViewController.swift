@@ -17,9 +17,20 @@ final class SplashHomeSelectionViewController: UIViewController {
         return actionButtonStackView
     }()
     
+    private lazy var jsonTextField: UITextField = {
+        let jsonTextField = UITextField()
+        jsonTextField.placeholder = "Digite o JSON aqui"
+        jsonTextField.translatesAutoresizingMaskIntoConstraints = false
+        return jsonTextField
+    }()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         buildLayout()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        jsonTextField.text = ""
     }
     
     required init?(coder: NSCoder) {
@@ -30,6 +41,7 @@ final class SplashHomeSelectionViewController: UIViewController {
         setupLayer()
         setupViews()
         setupStackButtons()
+        setupTextFieldMock()
         setupConstraints()
     }
     
@@ -42,7 +54,7 @@ final class SplashHomeSelectionViewController: UIViewController {
             actionButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             actionButtonStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             actionButtonStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            actionButtonStackView.heightAnchor.constraint(equalToConstant: 120)
+            actionButtonStackView.heightAnchor.constraint(equalToConstant: CGFloat(actionButtonStackView.subviews.count * 60))
         ])
     }
 }
@@ -77,8 +89,31 @@ private extension SplashHomeSelectionViewController {
         }
     }
     
+    func setupTextFieldMock() {
+        let textFieldSendButton = UIButton()
+        textFieldSendButton.backgroundColor = .tintColor
+        textFieldSendButton.setTitle("Home com Mock digitado", for: .normal)
+        textFieldSendButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let action = UIAction { [weak self] action in
+            guard let self else { return }
+            goToHomeWithTypedMock()
+        }
+        textFieldSendButton.addAction(action, for: .touchUpInside)
+        
+        actionButtonStackView.addArrangedSubview(jsonTextField)
+        actionButtonStackView.addArrangedSubview(textFieldSendButton)
+    }
+    
     func goToHome(indexSelected: Int) {
         let factory = HomeFactory.make(mockType: homeTypes[indexSelected])
         navigationController?.pushViewController(factory, animated: true)
+    }
+    
+    func goToHomeWithTypedMock() {
+        if let textTyped = jsonTextField.text, !textTyped.isEmpty {
+            let factory = HomeFactory.make(mockString: "\(textTyped)")
+            navigationController?.pushViewController(factory, animated: true)
+        }
     }
 }
