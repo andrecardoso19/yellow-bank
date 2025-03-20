@@ -14,11 +14,13 @@ enum FetchData {
             return DataSource.noHeaderJson
         case .moreInfoMock:
             return DataSource.moreInfoJson
+        case .transactionsMock:
+            return DataSource.transactionsMock
         }
     }
     
     static func returnJsonTypes() -> [JSONType]{
-        return [.defaultMock, .noHeaderMock, .moreInfoMock]
+        return [.defaultMock, .noHeaderMock, .moreInfoMock, .transactionsMock]
     }
 }
 
@@ -26,6 +28,7 @@ enum JSONType: String {
     case defaultMock = "Mock padrão"
     case noHeaderMock = "Mock sem header"
     case moreInfoMock = "Mock com mais itens"
+    case transactionsMock = "Mock com transações recentes"
 }
 
 
@@ -533,6 +536,100 @@ enum DataSource {
                     }
                 }
             ]
+        }
+        
+        """
+    
+    static let transactionsMock = """
+        {
+          "header": {
+            "title": {
+              "text": "Olá, Pedro",
+              "font_size": 24,
+              "color": "#CCCCCC"
+            }
+          },
+          "items": [
+            {
+              "id": "balance_section",
+              "type": "balance",
+              "content": {
+                "amount": {
+                  "currency_symbol": "R$",
+                  "value": {
+                    "text": "90,93",
+                    "font_size": 28,
+                    "color": "#000000"
+                  }
+                },
+                "items": [
+                  {
+                    "id": "pix",
+                    "title": {
+                      "text": "Pix",
+                      "font_size": 14,
+                      "color": "#CCCCCC"
+                    },
+                    "icon": "pix-icon",
+                    "deeplink": "swiftbankapp://pix"
+                  },
+                  {
+                    "id": "transferir",
+                    "title": {
+                      "text": "Transferir",
+                      "font_size": 14,
+                      "color": "#CCCCCC"
+                    },
+                    "icon": "transfer-money-icon"
+                  },
+                  {
+                    "id": "qr-code",
+                    "title": {
+                      "text": "QR Code",
+                      "font_size": 14,
+                      "color": "#CCCCCC"
+                    },
+                    "icon": "qr-code-icon"
+                  },
+                  {
+                    "id": "recarga",
+                    "title": {
+                      "text": "Recarga",
+                      "font_size": 14,
+                      "color": "#CCCCCC"
+                    },
+                    "icon": "cellphone-icon"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "transactions-section",
+              "type": "transactions",
+              "content": {
+                "items": [
+                  {
+                    "id": "R$ 29,90",
+                    "title": {
+                      "text": "Compra realizada no iFood",
+                      "font_size": 14,
+                      "color": "#CCCCCC"
+                    },
+                    "icon": "cellphone-icon"
+                  },
+                  {
+                    "id": "R$ 24,50",
+                    "title": {
+                      "text": "Compra realizada no iFood",
+                      "font_size": 14,
+                      "color": "#CCCCCC"
+                    },
+                    "icon": "pix-icon"
+                  }
+                ]
+              }
+            }
+          ]
         }
         
         """

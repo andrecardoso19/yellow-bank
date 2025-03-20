@@ -37,6 +37,10 @@ extension HomePresenter: HomePresenting {
                 cells.append(
                     presentCreditCardSection(itemContent: item.content)
                 )
+            case .transactionsSection:
+                cells.append(
+                    presentTransactionsSection(itemContent: item.content)
+                )
             }
         }
         
@@ -82,5 +86,13 @@ private extension HomePresenter {
             icon: itemContent.icon ?? .mastercardIcon
         )
         return CellFactory(wrappedInstance: CreditCardInfoCellFactory(creditCardInfoCellDto: dto))
+    }
+    
+    func presentTransactionsSection(itemContent: HomeItemContent) -> CellFactory {
+        let dto = TransactionsSectionCellDTO(
+            amount: itemContent.amount ?? .init(currencySymbol: "", value: .init()),
+            items: itemContent.items ?? []
+        )
+        return CellFactory(wrappedInstance: TransactionsSectionCellFactory(transactionsSectionCellDTO: dto))
     }
 }

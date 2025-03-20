@@ -30,6 +30,9 @@ enum DesignSystem {
         static func toBalanceItem() -> BalanceItemInterface {
             return BalanceItemView()
         }
+        static func toTransactionsSectionItem() -> TransactionsSectionItemInterface {
+            return TransactionsSectionItemView()
+        }
         static func toCreditCardInfoItem() -> CreditCardInfoItemInterface {
             return CreditCardInfoItemView()
         }

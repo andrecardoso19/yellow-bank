@@ -1,0 +1,57 @@
+//
+//  TransactionsSectionCell.swift
+//  YellowBank
+//
+//  Created by André  Aragão on 20/03/25.
+//
+import UIKit
+
+final class TransactionsSectionCell: UITableViewCell {
+    static let reuseId = "TransactionsSectionCell"
+    private lazy var balanceItem = DesignSystem.Components.toTransactionsSectionItem()
+    
+    override init(style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = nil) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
+        buildLayout()
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) { nil }
+    
+    private func buildLayout() {
+        setupViews()
+        setupConstraints()
+    }
+    
+    private func setupViews() {
+        backgroundColor = .clear
+        contentView.addSubview(balanceItem)
+    }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            balanceItem.topAnchor.constraint(equalTo: contentView.topAnchor),
+            balanceItem.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            balanceItem.heightAnchor.constraint(equalToConstant: 180),
+            balanceItem.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            balanceItem.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
+}
+
+extension TransactionsSectionCell: ConfigurableCell {
+    typealias DTO = TransactionsSectionCellDTO
+    
+    func setup(with DTO: TransactionsSectionCellDTO) {
+        balanceItem.setDTO(dto: .init(amount: DTO.amount, items: DTO.items))
+        buildLayout()
+    }
+}
+
+struct TransactionsSectionCellDTO {
+    let amount: HomeItemAmount
+    let items: [HomeBalanceItem]
+}
+
+

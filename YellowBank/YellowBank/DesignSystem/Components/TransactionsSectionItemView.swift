@@ -1,12 +1,12 @@
 //
-//  BalanceItemView.swift
+//  TransactionsSectionItemView.swift
 //  YellowBank
 //
-//  Created by André  Aragão on 19/03/25.
+//  Created by André  Aragão on 20/03/25.
 //
 import UIKit
 
-final class BalanceItemView: UIView, BalanceItemInterface {
+final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterface {
     private lazy var backgroundRoundView = DesignSystem.BaseComponents.toBaseRoundBackground()
     private lazy var balanceLabel = DesignSystem.BaseComponents.toBaseText()
     private lazy var currencyLabel = DesignSystem.BaseComponents.toBaseText()
@@ -42,7 +42,7 @@ final class BalanceItemView: UIView, BalanceItemInterface {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setDTO(dto: BalanceItemDTO) {
+    func setDTO(dto: TransactionsSectionItemDTO) {
         balanceLabel.setDTO(
             dto: .init(
                 text: "Conta",
