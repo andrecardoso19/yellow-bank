@@ -9,8 +9,6 @@ import UIKit
 final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterface {
     private lazy var backgroundRoundView = DesignSystem.BaseComponents.toBaseRoundBackground()
     private lazy var balanceLabel = DesignSystem.BaseComponents.toBaseText()
-    private lazy var currencyLabel = DesignSystem.BaseComponents.toBaseText()
-    private lazy var valueLabel = DesignSystem.BaseComponents.toBaseText()
     
     private lazy var arrowImage: UIImageView = {
         let imageView = UIImageView()
@@ -24,7 +22,7 @@ final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterfac
     
     private lazy var actionButtonStackView: UIStackView = {
         let actionButtonStackView = UIStackView()
-        actionButtonStackView.axis = .horizontal
+        actionButtonStackView.axis = .vertical
         actionButtonStackView.distribution = .fillProportionally
         actionButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         return actionButtonStackView
@@ -45,22 +43,10 @@ final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterfac
     func setDTO(dto: TransactionsSectionItemDTO) {
         balanceLabel.setDTO(
             dto: .init(
-                text: "Conta",
+                text: "Últimas Transações",
                 fontSize: 17,
                 textColor: .black
             )
-        )
-        valueLabel.setDTO(
-            dto: .init(
-                text: dto.amount.value.text,
-                fontSize: CGFloat(dto.amount.value.fontSize),
-                textColor: UIColor(named: dto.amount.value.color) ?? .black)
-        )
-        currencyLabel.setDTO(
-            dto: .init(
-                text: dto.amount.currencySymbol,
-                fontSize: CGFloat(dto.amount.value.fontSize),
-                textColor: UIColor(named: dto.amount.value.color) ?? .black)
         )
         backgroundRoundView.setDTO(
             dto: .init(
@@ -75,9 +61,17 @@ final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterfac
     
     private func setupActionButtonItems(items: [HomeBalanceItem]) {
         for item in items {
-            let actionButton = DesignSystem.BaseComponents.toBalanceActionButton()
-            actionButton.setDTO(dto: .init(imageName: item.icon, text: item.title))
-            actionButtonStackView.addArrangedSubview(actionButton)
+            let transactionItem = TransactionItemView(
+                titleDTO: .init(
+                    text: item.title.text,
+                    fontSize: CGFloat(item.title.fontSize),
+                    textColor: UIColor(named: item.title.color) ?? .black
+                ),
+                value: item.id,
+                imageName: item.icon
+            )
+            actionButtonStackView.addArrangedSubview(transactionItem)
+            transactionItem.widthAnchor.constraint(equalTo: actionButtonStackView.widthAnchor).isActive = true
         }
     }
     
@@ -90,8 +84,6 @@ final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterfac
         backgroundColor = .clear
         addSubview(backgroundRoundView)
         backgroundRoundView.addSubview(balanceLabel)
-        backgroundRoundView.addSubview(currencyLabel)
-        backgroundRoundView.addSubview(valueLabel)
         backgroundRoundView.addSubview(arrowImage)
         backgroundRoundView.addSubview(actionButtonStackView)
     }
@@ -107,23 +99,15 @@ final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterfac
             balanceLabel.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 10),
             balanceLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
             balanceLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
-            balanceLabel.heightAnchor.constraint(equalToConstant: 20),
-            
-            currencyLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor),
-            currencyLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
-            currencyLabel.heightAnchor.constraint(equalToConstant: 30),
-            
-            valueLabel.centerYAnchor.constraint(equalTo: currencyLabel.centerYAnchor),
-            valueLabel.leadingAnchor.constraint(equalTo: currencyLabel.trailingAnchor),
             
             arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 5),
             arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5),
             arrowImage.heightAnchor.constraint(equalToConstant: 17),
             arrowImage.widthAnchor.constraint(equalToConstant: 12),
             
-            actionButtonStackView.topAnchor.constraint(equalTo: valueLabel.bottomAnchor),
+            actionButtonStackView.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor, constant: 10),
             actionButtonStackView.widthAnchor.constraint(equalTo: backgroundRoundView.widthAnchor),
-            actionButtonStackView.heightAnchor.constraint(equalToConstant: 80)
+            actionButtonStackView.heightAnchor.constraint(equalToConstant: 180)
         ])
     }
 }

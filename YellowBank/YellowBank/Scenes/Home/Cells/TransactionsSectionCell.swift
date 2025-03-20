@@ -20,6 +20,7 @@ final class TransactionsSectionCell: UITableViewCell {
     required init?(coder: NSCoder) { nil }
     
     private func buildLayout() {
+        balanceItem.removeFromSuperview()
         setupViews()
         setupConstraints()
     }
@@ -33,7 +34,7 @@ final class TransactionsSectionCell: UITableViewCell {
         NSLayoutConstraint.activate([
             balanceItem.topAnchor.constraint(equalTo: contentView.topAnchor),
             balanceItem.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            balanceItem.heightAnchor.constraint(equalToConstant: 180),
+            balanceItem.heightAnchor.constraint(equalToConstant: CGFloat(230)),
             balanceItem.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             balanceItem.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])

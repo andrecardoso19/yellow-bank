@@ -9,6 +9,8 @@ import UIKit
 final class YellowBankImage: UIImageView, ImageInterface {
     func setDTO(dto: ImageDTO) {
         self.image = setupImage(imageName: dto.imageName)
+        translatesAutoresizingMaskIntoConstraints = false
+        tintColor = .black
     }
     
     private func setupImage(imageName: ImageName) -> UIImage {

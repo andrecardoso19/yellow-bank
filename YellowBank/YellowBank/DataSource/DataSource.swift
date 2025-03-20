@@ -625,6 +625,15 @@ enum DataSource {
                       "color": "#CCCCCC"
                     },
                     "icon": "pix-icon"
+                  },
+                  {
+                    "id": "R$ 22,50",
+                    "title": {
+                      "text": "Compra realizada no iFood",
+                      "font_size": 14,
+                      "color": "#CCCCCC"
+                    },
+                    "icon": "pix-icon"
                   }
                 ]
               }
