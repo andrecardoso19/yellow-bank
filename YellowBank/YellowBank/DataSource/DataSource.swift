@@ -16,12 +16,16 @@ enum FetchData {
             return DataSource.moreInfoJson
         }
     }
+    
+    static func returnJsonTypes() -> [JSONType]{
+        return [.defaultMock, .noHeaderMock, .moreInfoMock]
+    }
 }
 
-enum JSONType {
-    case defaultMock
-    case noHeaderMock
-    case moreInfoMock
+enum JSONType: String {
+    case defaultMock = "Mock padrão"
+    case noHeaderMock = "Mock sem header"
+    case moreInfoMock = "Mock com mais itens"
 }
 
 

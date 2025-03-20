@@ -57,6 +57,14 @@ final class HomeViewController: UIViewController {
         interactor.loadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     private func buildLayout() {
         setupViews()
         setupLayoutConstraints()
