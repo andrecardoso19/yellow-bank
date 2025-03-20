@@ -98,6 +98,6 @@ struct TransactionsSectionCellFactory: CellMaker, Equatable {
     }
 
     static func == (lhs: TransactionsSectionCellFactory, rhs: TransactionsSectionCellFactory) -> Bool {
-        lhs.transactionsSectionCellDTO.amount.value.text == rhs.transactionsSectionCellDTO.amount.value.text
+        lhs.transactionsSectionCellDTO.items.count == rhs.transactionsSectionCellDTO.items.count
     }
 }

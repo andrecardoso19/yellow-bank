@@ -90,7 +90,6 @@ private extension HomePresenter {
     
     func presentTransactionsSection(itemContent: HomeItemContent) -> CellFactory {
         let dto = TransactionsSectionCellDTO(
-            amount: itemContent.amount ?? .init(currencySymbol: "", value: .init()),
             items: itemContent.items ?? []
         )
         return CellFactory(wrappedInstance: TransactionsSectionCellFactory(transactionsSectionCellDTO: dto))

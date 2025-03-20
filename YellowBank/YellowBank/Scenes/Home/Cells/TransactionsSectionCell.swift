@@ -45,13 +45,12 @@ extension TransactionsSectionCell: ConfigurableCell {
     typealias DTO = TransactionsSectionCellDTO
     
     func setup(with DTO: TransactionsSectionCellDTO) {
-        balanceItem.setDTO(dto: .init(amount: DTO.amount, items: DTO.items))
+        balanceItem.setDTO(dto: .init(items: DTO.items))
         buildLayout()
     }
 }
 
 struct TransactionsSectionCellDTO {
-    let amount: HomeItemAmount
     let items: [HomeBalanceItem]
 }
 

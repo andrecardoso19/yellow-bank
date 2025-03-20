@@ -20,7 +20,7 @@ enum FetchData {
     }
     
     static func returnJsonTypes() -> [JSONType]{
-        return [.defaultMock, .noHeaderMock, .moreInfoMock, .transactionsMock]
+        return [.defaultMock, .transactionsMock, .noHeaderMock, .moreInfoMock]
     }
 }
 
@@ -445,7 +445,7 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "cellphone-icon"
+                    "icon": "fork.knife.circle"
                   },
                   {
                     "id": "R$ 24,50",
@@ -454,7 +454,7 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "pix-icon"
+                    "icon": "fork.knife.circle"
                   },
                   {
                     "id": "R$ 22,50",
@@ -463,7 +463,7 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "pix-icon"
+                    "icon": "fork.knife.circle"
                   }
                 ]
               }
@@ -725,7 +725,7 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "cellphone-icon"
+                    "icon": "fork.knife.circle"
                   },
                   {
                     "id": "R$ 24,50",
@@ -734,7 +734,7 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "pix-icon"
+                    "icon": "fork.knife.circle"
                   },
                   {
                     "id": "R$ 22,50",
@@ -743,7 +743,7 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "pix-icon"
+                    "icon": "fork.knife.circle"
                   }
                 ]
               }

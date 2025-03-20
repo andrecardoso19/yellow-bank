@@ -11,6 +11,5 @@ protocol TransactionsSectionItemInterface: UIView {
 }
 
 struct TransactionsSectionItemDTO {
-    let amount: HomeItemAmount
     let items: [HomeBalanceItem]
 }

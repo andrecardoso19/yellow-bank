@@ -20,6 +20,7 @@ final class SplashHomeSelectionViewController: UIViewController {
     private lazy var jsonTextField: UITextField = {
         let jsonTextField = UITextField()
         jsonTextField.placeholder = "Digite o JSON aqui"
+        jsonTextField.backgroundColor = .white
         jsonTextField.translatesAutoresizingMaskIntoConstraints = false
         return jsonTextField
     }()

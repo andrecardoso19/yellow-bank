@@ -344,6 +344,23 @@ struct HomeResponseMock {
                                        fontSize: 12,
                                        color: "#CCCCCC")
                 )
+            ),
+            HomeItem(
+                id: .transactionsSection,
+                type: .transactions,
+                content: HomeItemContent(
+                    amount: nil,
+                    items: nil,
+                    title: HomeTitle(text: "Seguros",
+                                     fontSize: 16,
+                                     color: "#CCCCCC"),
+                    subtitle: HomeTitle(text: "Mantenha protegido o que há de mais importante em sua vida",
+                                        fontSize: 12,
+                                        color: "#CCCCCC"),
+                    icon: nil,
+                    value: nil,
+                    dueDate: nil
+                )
             )
         ]
     )

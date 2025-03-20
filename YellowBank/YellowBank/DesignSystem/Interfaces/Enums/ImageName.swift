@@ -13,4 +13,5 @@ enum ImageName: String, Decodable {
     case mastercardIcon = "master-card-icon"
     case arrowRight = "arrow.right"
     case notificationBadge = "bell.badge"
+    case foodIcon = "fork.knife.circle"
 }

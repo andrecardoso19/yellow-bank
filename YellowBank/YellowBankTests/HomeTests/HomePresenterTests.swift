@@ -78,7 +78,14 @@ final class NPSPresenterTests: XCTestCase {
                     dueDate: mock.items[2].content.dueDate ?? .init(),
                     icon: mock.items[2].content.icon ?? .mastercardIcon
                 )
-            ))
+            )),
+            CellFactory(
+                wrappedInstance: TransactionsSectionCellFactory(
+                    transactionsSectionCellDTO: .init(
+                        items: mock.items[3].content.items ?? []
+                    )
+                )
+            )
         ]
         
         args.sut.presentHome(homeResponse: mock)

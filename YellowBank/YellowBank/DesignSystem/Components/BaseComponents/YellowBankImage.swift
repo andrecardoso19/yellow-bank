@@ -30,6 +30,8 @@ final class YellowBankImage: UIImageView, ImageInterface {
             image = UIImage(systemName: ImageName.arrowRight.rawValue) ?? UIImage()
         case .notificationBadge:
             image = UIImage(systemName: "bell.badge") ?? UIImage()
+        case .foodIcon:
+            image = UIImage(systemName: ImageName.foodIcon.rawValue) ?? UIImage()
         }
         return image
     }
