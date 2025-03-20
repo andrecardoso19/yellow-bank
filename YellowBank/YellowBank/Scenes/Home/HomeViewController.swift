@@ -34,9 +34,8 @@ final class HomeViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(GenericSectionCell.self, forCellReuseIdentifier: GenericSectionCell.reuseId)
-        tableView.register(BalanceCell.self, forCellReuseIdentifier: BalanceCell.reuseId)
         
         return tableView
     }()
