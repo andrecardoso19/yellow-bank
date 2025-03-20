@@ -41,10 +41,10 @@ private extension HomeInteractor {
             handleError(error: .emptyData)
             return
         }
-        if homeResponse.header.title.text.isEmpty {
-            presenter.removeHeader()
+        if let header = homeResponse.header, !header.title.text.isEmpty {
+            presenter.presentHeader(header: homeResponse.header?.title ?? .init())
         } else {
-            presenter.presentHeader(header: homeResponse.header.title)
+            presenter.removeHeader()
         }
         presenter.presentHome(homeResponse: homeResponse)
     }

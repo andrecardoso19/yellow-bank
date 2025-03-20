@@ -85,7 +85,7 @@ final class HomeInteractorTests: XCTestCase {
         XCTAssertEqual(args.presenterSpy.presentHomeCount, 1)
         XCTAssertEqual(args.presenterSpy.presentHomeResponse, responseMock)
         XCTAssertEqual(args.presenterSpy.presentHeaderCount, 1)
-        XCTAssertEqual(args.presenterSpy.headerPresented, responseMock.header.title)
+        XCTAssertEqual(args.presenterSpy.headerPresented, responseMock.header?.title)
     }
     
     func testLoadData_WhenSuccessNoHeader_ShouldPresenterDisplayHomeAndRemoveHeader() {
@@ -111,7 +111,7 @@ final class HomeInteractorTests: XCTestCase {
         XCTAssertEqual(args.presenterSpy.presentHomeCount, 1)
         XCTAssertEqual(args.presenterSpy.presentHomeResponse, responseMock)
         XCTAssertEqual(args.presenterSpy.presentHeaderCount, 1)
-        XCTAssertEqual(args.presenterSpy.headerPresented, responseMock.header.title)
+        XCTAssertEqual(args.presenterSpy.headerPresented, responseMock.header?.title)
         
         args.serviceMock.getDataResult = .success(responseMockEmptyHeader)
         args.sut.loadData()

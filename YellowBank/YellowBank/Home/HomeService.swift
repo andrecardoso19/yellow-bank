@@ -11,12 +11,17 @@ protocol HomeServicing {
     func getData(completion: @escaping (Result<HomeResponse, HomeApiError>) -> Void)
 }
 
-final class HomeService {}
+final class HomeService {
+    let mockType: JSONType
+    init(mockType: JSONType) {
+        self.mockType = mockType
+    }
+}
 
 // MARK: - HomeServicing
 extension HomeService: HomeServicing {
     func getData(completion: @escaping (Result<HomeResponse, HomeApiError>) -> Void) {
-        let JSON = getDataSource.getData()
+        let JSON = FetchData.getData(type: mockType)
         let jsonData = JSON.data(using: .utf8)!
         
         do {

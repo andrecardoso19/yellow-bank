@@ -10,7 +10,7 @@ struct HomeResponse: Equatable, Decodable {
         lhs.header == rhs.header && lhs.items == rhs.items
     }
     
-    let header: HomeHeader
+    let header: HomeHeader?
     let items: [HomeItem]
 }
 

@@ -8,8 +8,8 @@
 import UIKit
 
 enum HomeFactory {
-    static func make() -> UIViewController {
-        let service = HomeService()
+    static func make(mockType: JSONType = .defaultMock) -> UIViewController {
+        let service = HomeService(mockType: mockType)
         let presenter = HomePresenter()
         let interactor = HomeInteractor(service: service, presenter: presenter)
         let viewController = HomeViewController(interactor: interactor)
