@@ -17,13 +17,13 @@ protocol CellMaker {
 
 
 final class CellFactory: CellMaker {
-    private(set) var wrappedInstance: CellMaker
-
-    init(wrappedInstance: CellMaker) {
-        self.wrappedInstance = wrappedInstance
+    private(set) var cellMaker: CellMaker
+    
+    init(cellMaker: CellMaker) {
+        self.cellMaker = cellMaker
     }
-
+    
     func makeCell() -> UITableViewCell {
-        wrappedInstance.makeCell()
+        cellMaker.makeCell()
     }
 }

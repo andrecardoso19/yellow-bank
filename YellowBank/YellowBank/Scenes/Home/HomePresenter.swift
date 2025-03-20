@@ -66,7 +66,7 @@ private extension HomePresenter {
             title: itemContent.title ?? .init(),
             subtitle: itemContent.subtitle ?? .init()
         )
-        return CellFactory(wrappedInstance: GenericSectionCellFactory(genericSectionCellDTO: dto))
+        return CellFactory(cellMaker: GenericSectionCellFactory(genericSectionCellDTO: dto))
     }
     
     func presentBalanceSection(itemContent: HomeItemContent) -> CellFactory {
@@ -74,7 +74,7 @@ private extension HomePresenter {
             amount: itemContent.amount ?? .init(currencySymbol: "", value: .init()),
             items: itemContent.items ?? []
         )
-        return CellFactory(wrappedInstance: BalanceCellFactory(balanceCellDTO: dto))
+        return CellFactory(cellMaker: BalanceCellFactory(balanceCellDTO: dto))
     }
     
     func presentCreditCardSection(itemContent: HomeItemContent) -> CellFactory {
@@ -85,13 +85,13 @@ private extension HomePresenter {
             dueDate: itemContent.dueDate ?? .init(),
             icon: itemContent.icon ?? .mastercardIcon
         )
-        return CellFactory(wrappedInstance: CreditCardInfoCellFactory(creditCardInfoCellDto: dto))
+        return CellFactory(cellMaker: CreditCardInfoCellFactory(creditCardInfoCellDto: dto))
     }
     
     func presentTransactionsSection(itemContent: HomeItemContent) -> CellFactory {
         let dto = TransactionsSectionCellDTO(
             items: itemContent.items ?? []
         )
-        return CellFactory(wrappedInstance: TransactionsSectionCellFactory(transactionsSectionCellDTO: dto))
+        return CellFactory(cellMaker: TransactionsSectionCellFactory(transactionsSectionCellDTO: dto))
     }
 }

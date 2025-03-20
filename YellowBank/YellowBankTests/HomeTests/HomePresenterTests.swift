@@ -58,19 +58,19 @@ final class NPSPresenterTests: XCTestCase {
         let args = makeSUT()
         let mock = HomeResponseMock.responseMockEachSectionType
         let expectedCells: [CellFactory] = [
-            CellFactory(wrappedInstance: BalanceCellFactory(
+            CellFactory(cellMaker: BalanceCellFactory(
                 balanceCellDTO: .init(
                     amount: mock.items[0].content.amount ?? .init(currencySymbol: "", value: .init()),
                     items: mock.items[0].content.items ?? []
                 )
             )),
-            CellFactory(wrappedInstance: GenericSectionCellFactory(
+            CellFactory(cellMaker: GenericSectionCellFactory(
                 genericSectionCellDTO: .init(
                     title: mock.items[1].content.title ?? .init(),
                     subtitle: mock.items[1].content.subtitle ?? .init()
                 )
             )),
-            CellFactory(wrappedInstance: CreditCardInfoCellFactory(
+            CellFactory(cellMaker: CreditCardInfoCellFactory(
                 creditCardInfoCellDto: .init(
                     title: mock.items[2].content.title ?? .init(),
                     subtitle: mock.items[2].content.subtitle ?? .init(),
@@ -80,7 +80,7 @@ final class NPSPresenterTests: XCTestCase {
                 )
             )),
             CellFactory(
-                wrappedInstance: TransactionsSectionCellFactory(
+                cellMaker: TransactionsSectionCellFactory(
                     transactionsSectionCellDTO: .init(
                         items: mock.items[3].content.items ?? []
                     )
