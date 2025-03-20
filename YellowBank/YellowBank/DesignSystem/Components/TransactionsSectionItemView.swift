@@ -61,14 +61,17 @@ final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterfac
     
     private func setupActionButtonItems(items: [HomeBalanceItem]) {
         for item in items {
-            let transactionItem = TransactionItemView(
-                titleDTO: .init(
-                    text: item.title.text,
-                    fontSize: CGFloat(item.title.fontSize),
-                    textColor: UIColor(named: item.title.color) ?? .black
-                ),
-                value: item.id,
-                imageName: item.icon
+            let transactionItem = DesignSystem.BaseComponents.toTransactionItem()
+            transactionItem.setDTO(
+                dto: .init(
+                    titleDTO: .init(
+                        text: item.title.text,
+                        fontSize: CGFloat(item.title.fontSize),
+                        textColor: UIColor(named: item.title.color) ?? .black
+                    ),
+                    value: item.id,
+                    imageName: item.icon
+                )
             )
             actionButtonStackView.addArrangedSubview(transactionItem)
             transactionItem.widthAnchor.constraint(equalTo: actionButtonStackView.widthAnchor).isActive = true

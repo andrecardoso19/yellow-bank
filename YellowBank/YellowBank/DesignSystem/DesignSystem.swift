@@ -21,6 +21,9 @@ enum DesignSystem {
         static func toBaseText() -> BaseTextInterface {
             return BaseTextView()
         }
+        static func toTransactionItem() -> TransactionItemInterface {
+            return TransactionItemView()
+        }
     }
     
     enum Components {
