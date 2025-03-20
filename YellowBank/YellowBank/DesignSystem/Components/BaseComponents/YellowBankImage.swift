@@ -26,6 +26,8 @@ final class YellowBankImage: UIImageView, ImageInterface {
             image = UIImage(named: "mastercard-logo") ?? UIImage()
         case .arrowRight:
             image = UIImage(systemName: ImageName.arrowRight.rawValue) ?? UIImage()
+        case .notificationBadge:
+            image = UIImage(systemName: "bell.badge") ?? UIImage()
         }
         return image
     }

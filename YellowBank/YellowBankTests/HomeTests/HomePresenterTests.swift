@@ -11,6 +11,8 @@ import XCTest
 private class HomeDisplaySpy: HomeDisplaying {
     enum Message: Equatable {
         case displayError
+        case removeHeader
+        case displayHeader(header: YellowBank.HomeTitle)
     }
 
     private(set) var messages: [Message] = []
@@ -24,6 +26,14 @@ private class HomeDisplaySpy: HomeDisplaying {
     
     func displayError() {
         messages.append(.displayError)
+    }
+    
+    func displayHeader(header: YellowBank.HomeTitle) {
+        messages.append(.displayHeader(header: header))
+    }
+    
+    func removeHeader() {
+        messages.append(.removeHeader)
     }
 }
 
@@ -83,6 +93,23 @@ final class NPSPresenterTests: XCTestCase {
         args.sut.displayError(error: .decodeFail)
         
         XCTAssertEqual(args.displaySpy.messages, [.displayError])
+    }
+    
+    func testPresentHeader_WhenCalled_ShouldDisplayHeader() {
+        let args = makeSUT()
+        let homeTitle = HomeTitle(text: "header", fontSize: 24, color: "")
+        
+        args.sut.presentHeader(header: homeTitle)
+        
+        XCTAssertEqual(args.displaySpy.messages, [.displayHeader(header: homeTitle)])
+    }
+    
+    func testRemoveHeader_WhenCalled_ShouldDisplayRemoveHeader() {
+        let args = makeSUT()
+        
+        args.sut.removeHeader()
+        
+        XCTAssertEqual(args.displaySpy.messages, [.removeHeader])
     }
 }
 

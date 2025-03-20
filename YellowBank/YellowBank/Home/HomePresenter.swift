@@ -9,7 +9,9 @@ import UIKit
 
 protocol HomePresenting: AnyObject {
     func presentHome(homeResponse: HomeResponse)
+    func presentHeader(header: HomeTitle)
     func displayError(error: HomeApiError)
+    func removeHeader()
 }
 
 final class HomePresenter {
@@ -39,6 +41,14 @@ extension HomePresenter: HomePresenting {
         }
         
         viewController?.displayHome(cells: cells)
+    }
+    
+    func presentHeader(header: HomeTitle) {
+        viewController?.displayHeader(header: header)
+    }
+    
+    func removeHeader() {
+        viewController?.removeHeader()
     }
     
     func displayError(error: HomeApiError) {

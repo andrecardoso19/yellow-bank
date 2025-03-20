@@ -37,9 +37,14 @@ extension HomeInteractor: HomeInteracting {
 
 private extension HomeInteractor {
     func handleSuccess(homeResponse: HomeResponse) {
-        if homeResponse.items.isEmpty || homeResponse.header.title.text.isEmpty {
+        if homeResponse.items.isEmpty {
             handleError(error: .emptyData)
             return
+        }
+        if homeResponse.header.title.text.isEmpty {
+            presenter.removeHeader()
+        } else {
+            presenter.presentHeader(header: homeResponse.header.title)
         }
         presenter.presentHome(homeResponse: homeResponse)
     }

@@ -22,7 +22,7 @@ struct HomeHeader: Decodable, Equatable {
     let title: HomeTitle
 }
 
-struct HomeTitle: Decodable {
+struct HomeTitle: Equatable, Decodable {
     let text: String
     let fontSize: Int
     let color: String

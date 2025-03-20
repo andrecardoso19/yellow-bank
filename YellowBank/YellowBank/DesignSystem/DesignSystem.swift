@@ -33,5 +33,8 @@ enum DesignSystem {
         static func toCreditCardInfoItem() -> CreditCardInfoItemInterface {
             return CreditCardInfoItemView()
         }
+        static func toHeaderItem() -> HeaderItemInterface {
+            return HeaderView()
+        }
     }
 }

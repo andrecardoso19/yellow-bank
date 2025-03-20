@@ -5,8 +5,7 @@
 //  Created by André  Aragão on 18/03/25.
 //
 enum getDataSource {
-    static func getData() -> String{
-        let JSON = """
+    private static let defaultJson = """
         {
             "header": {
                 "title": {
@@ -148,6 +147,7 @@ enum getDataSource {
         }
         
         """
-        return JSON
+    static func getData() -> String{
+        return defaultJson
     }
 }

@@ -10,11 +10,15 @@ import UIKit
 protocol HomeDisplaying: AnyObject {
     func displayHome(cells: [CellFactory])
     func displayError()
+    func displayHeader(header: HomeTitle)
+    func removeHeader()
 }
 
 final class HomeViewController: UIViewController {
     private let interactor: HomeInteracting
     private var cells: [UITableViewCell] = []
+    
+    private lazy var headerView = DesignSystem.Components.toHeaderItem()
     
     private lazy var backgroundLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
@@ -50,13 +54,13 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         buildLayout()
-        tableView.reloadData()
         interactor.loadData()
     }
     
     private func buildLayout() {
         setupViews()
         setupLayoutConstraints()
+        tableView.reloadData()
     }
     
     private func setupViews() {
@@ -75,7 +79,9 @@ final class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -99,5 +105,29 @@ extension HomeViewController: HomeDisplaying {
     
     func displayError() {
         // a fazer
+    }
+    
+    func displayHeader(header: HomeTitle) {
+        tableView.removeFromSuperview()
+        view.addSubview(headerView)
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 60),
+            
+            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
+        ])
+        headerView.setDTO(dto: .init(title: .init(text: header.text, fontSize: header.fontSize, color: header.color)))
+    }
+    
+    func removeHeader() {
+        tableView.removeFromSuperview()
+        headerView.removeFromSuperview()
+        buildLayout()
     }
 }
