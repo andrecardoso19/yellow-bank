@@ -111,7 +111,15 @@ extension HomeViewController: HomeDisplaying {
     }
     
     func displayError() {
-        // a fazer
+        let errorView = DesignSystem.Components.toErrorView()
+        view.addSubview(errorView)
+        
+        NSLayoutConstraint.activate([
+            errorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            errorView.widthAnchor.constraint(equalToConstant: 320),
+            errorView.heightAnchor.constraint(equalToConstant: 230)
+        ])
     }
     
     func displayHeader(header: HomeTitle) {

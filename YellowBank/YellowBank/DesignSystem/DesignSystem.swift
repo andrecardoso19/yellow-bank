@@ -42,5 +42,8 @@ enum DesignSystem {
         static func toHeaderItem() -> HeaderItemInterface {
             return HeaderView()
         }
+        static func toErrorView() -> ErrorViewInterface {
+            return ErrorView()
+        }
     }
 }

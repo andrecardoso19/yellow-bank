@@ -11,6 +11,8 @@ final class BaseTextView: UILabel, BaseTextInterface {
         self.font = .systemFont(ofSize: CGFloat(dto.fontSize), weight: .medium)
         self.text = dto.text
         self.textColor = dto.textColor
+        self.numberOfLines = dto.numberOfLines
+        self.textAlignment = dto.textAlignment
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 }
