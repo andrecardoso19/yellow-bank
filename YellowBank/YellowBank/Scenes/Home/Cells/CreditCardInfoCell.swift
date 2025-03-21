@@ -35,7 +35,7 @@ final class CreditCardInfoCell: UITableViewCell {
         NSLayoutConstraint.activate([
             genericSectionItem.topAnchor.constraint(equalTo: contentView.topAnchor),
             genericSectionItem.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            genericSectionItem.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing10x.rawValue * 1.5),
+            genericSectionItem.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing10x * 1.5),
             genericSectionItem.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             genericSectionItem.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])

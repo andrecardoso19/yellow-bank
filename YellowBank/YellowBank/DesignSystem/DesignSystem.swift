@@ -48,10 +48,11 @@ enum DesignSystem {
     }
 }
 
-enum DSSpacings: CGFloat {
-    case baseSpacing = 10
-    case baseSpacing2x = 20
-    case baseSpacing4x = 40
-    case baseSpacing5x = 50
-    case baseSpacing10x = 100
+struct DSSpacings {
+    private static let baseValue: CGFloat = 10
+    static let baseSpacing: CGFloat = baseValue
+    static let baseSpacing2x: CGFloat = baseValue * 2
+    static let baseSpacing4x: CGFloat = baseValue * 4
+    static let baseSpacing5x: CGFloat = baseValue * 5
+    static let baseSpacing10x: CGFloat = baseValue * 10
 }

@@ -89,41 +89,41 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            backgroundRoundView.topAnchor.constraint(equalTo: topAnchor, constant: DSSpacings.baseSpacing.rawValue / 2),
-            backgroundRoundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: DSSpacings.baseSpacing.rawValue / 2),
+            backgroundRoundView.topAnchor.constraint(equalTo: topAnchor, constant: DSSpacings.baseSpacing / 2),
+            backgroundRoundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: DSSpacings.baseSpacing / 2),
             backgroundRoundView.heightAnchor.constraint(equalToConstant: 75),
-            backgroundRoundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
-            backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
+            backgroundRoundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -DSSpacings.baseSpacing / 2),
+            backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -DSSpacings.baseSpacing / 2),
             
-            cardFlagImageView.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing.rawValue),
-            cardFlagImageView.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing.rawValue / 2),
-            cardFlagImageView.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing5x.rawValue),
-            cardFlagImageView.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing5x.rawValue),
+            cardFlagImageView.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing),
+            cardFlagImageView.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing / 2),
+            cardFlagImageView.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing5x),
+            cardFlagImageView.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing5x),
             
             titleLabel.centerYAnchor.constraint(equalTo: cardFlagImageView.centerYAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: cardFlagImageView.trailingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue),
-            titleLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing2x.rawValue),
+            titleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing),
+            titleLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing2x),
             
-            subTitleLabel.topAnchor.constraint(equalTo: cardFlagImageView.bottomAnchor, constant: -DSSpacings.baseSpacing.rawValue),
-            subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing.rawValue),
-            subTitleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue),
-            subTitleLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 3),
+            subTitleLabel.topAnchor.constraint(equalTo: cardFlagImageView.bottomAnchor, constant: -DSSpacings.baseSpacing),
+            subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+            subTitleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing),
+            subTitleLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 3),
             
-            valueLabel.topAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
-            valueLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing.rawValue),
-            valueLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue),
-            valueLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 3),
+            valueLabel.topAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: -DSSpacings.baseSpacing / 2),
+            valueLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+            valueLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing),
+            valueLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 3),
             
-            dueDateLabel.topAnchor.constraint(equalTo: valueLabel.bottomAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
-            dueDateLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing.rawValue),
-            dueDateLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue),
-            dueDateLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 3),
+            dueDateLabel.topAnchor.constraint(equalTo: valueLabel.bottomAnchor, constant: -DSSpacings.baseSpacing / 2),
+            dueDateLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+            dueDateLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing),
+            dueDateLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 3),
             
-            arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing.rawValue / 2),
-            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
-            arrowImage.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 1.7),
-            arrowImage.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 1.2),
+            arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing / 2),
+            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing / 2),
+            arrowImage.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 1.7),
+            arrowImage.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 1.2),
         ])
     }
 }

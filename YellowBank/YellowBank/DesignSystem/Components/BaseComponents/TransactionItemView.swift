@@ -42,12 +42,12 @@ final class TransactionItemView: UIView, TransactionItemInterface {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             iconImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            iconImage.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 3.5),
-            iconImage.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 3.5),
-            iconImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: DSSpacings.baseSpacing.rawValue * 1.5),
+            iconImage.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 3.5),
+            iconImage.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 3.5),
+            iconImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: DSSpacings.baseSpacing * 1.5),
 
             titleText.topAnchor.constraint(equalTo: iconImage.topAnchor),
-            titleText.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: DSSpacings.baseSpacing.rawValue * 1.5),
+            titleText.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: DSSpacings.baseSpacing * 1.5),
             
             valueText.bottomAnchor.constraint(equalTo: iconImage.bottomAnchor),
             valueText.leadingAnchor.constraint(equalTo: titleText.leadingAnchor)

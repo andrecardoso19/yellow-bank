@@ -7,7 +7,7 @@
 import UIKit
 
 final class BalanceActionButtonView: UIView, BalanceActionButtonInterface {
-    private var buttonHeightWidth: CGFloat = DSSpacings.baseSpacing2x.rawValue * 3
+    private var buttonHeightWidth: CGFloat = DSSpacings.baseSpacing2x * 3
     
     private lazy var button: UIButton = {
         let button = UIButton(type: .system)
@@ -69,7 +69,7 @@ final class BalanceActionButtonView: UIView, BalanceActionButtonInterface {
             button.widthAnchor.constraint(equalToConstant: buttonHeightWidth),
             
             titleLabel.centerXAnchor.constraint(equalTo: button.centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: button.bottomAnchor, constant: DSSpacings.baseSpacing.rawValue / 2)
+            titleLabel.topAnchor.constraint(equalTo: button.bottomAnchor, constant: DSSpacings.baseSpacing / 2)
         ])
     }
 }

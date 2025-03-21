@@ -7,8 +7,8 @@
 import UIKit
 
 final class BalanceItemView: UIView, BalanceItemInterface {
-    private let baseSpacing = DSSpacings.baseSpacing.rawValue
-    private let baseMidSpacing = DSSpacings.baseSpacing.rawValue / 2
+    private let baseSpacing = DSSpacings.baseSpacing
+    private let baseMidSpacing = DSSpacings.baseSpacing / 2
     
     private lazy var backgroundRoundView = DesignSystem.BaseComponents.toBaseRoundBackground()
     private lazy var balanceLabel = DesignSystem.BaseComponents.toBaseText()
@@ -124,7 +124,7 @@ final class BalanceItemView: UIView, BalanceItemInterface {
             arrowImage.heightAnchor.constraint(equalToConstant: 17),
             arrowImage.widthAnchor.constraint(equalToConstant: 12),
             
-            actionButtonStackView.topAnchor.constraint(equalTo: valueLabel.bottomAnchor),
+            actionButtonStackView.topAnchor.constraint(equalTo: valueLabel.bottomAnchor, constant: baseMidSpacing),
             actionButtonStackView.widthAnchor.constraint(equalTo: backgroundRoundView.widthAnchor),
             actionButtonStackView.heightAnchor.constraint(equalToConstant: 80)
         ])

@@ -68,26 +68,26 @@ final class GenericSectionItemView: UIView, GenericSectionItemInterface {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            backgroundRoundView.topAnchor.constraint(equalTo: topAnchor, constant: DSSpacings.baseSpacing.rawValue / 2),
-            backgroundRoundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: DSSpacings.baseSpacing.rawValue / 2),
+            backgroundRoundView.topAnchor.constraint(equalTo: topAnchor, constant: DSSpacings.baseSpacing / 2),
+            backgroundRoundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: DSSpacings.baseSpacing / 2),
             backgroundRoundView.heightAnchor.constraint(equalToConstant: 75),
-            backgroundRoundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
-            backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
+            backgroundRoundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -DSSpacings.baseSpacing / 2),
+            backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -DSSpacings.baseSpacing / 2),
             
-            titleLabel.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing.rawValue),
-            titleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing.rawValue),
-            titleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue),
-            titleLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing2x.rawValue),
+            titleLabel.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing),
+            titleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+            titleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing),
+            titleLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing2x),
             
             subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing.rawValue),
-            subTitleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue),
-            subTitleLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 3),
+            subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+            subTitleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing),
+            subTitleLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 3),
             
-            arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing.rawValue / 2),
-            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
-            arrowImage.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 1.7),
-            arrowImage.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 1.2),
+            arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing / 2),
+            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing / 2),
+            arrowImage.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 1.7),
+            arrowImage.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 1.2),
         ])
     }
 }
