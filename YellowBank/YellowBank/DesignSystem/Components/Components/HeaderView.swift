@@ -49,12 +49,12 @@ final class HeaderView: UIView, HeaderItemInterface {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             headerTextLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            headerTextLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            headerTextLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: DSSpacings.baseSpacing.rawValue),
             
             notificationButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             notificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            notificationButton.heightAnchor.constraint(equalToConstant: 70),
-            notificationButton.widthAnchor.constraint(equalToConstant: 70)
+            notificationButton.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 7),
+            notificationButton.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 7)
         ])
     }
 }

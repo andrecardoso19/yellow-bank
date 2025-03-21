@@ -51,21 +51,21 @@ final class ErrorView: UIView, ErrorViewInterface {
         NSLayoutConstraint.activate([
             errorView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             errorView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            errorView.widthAnchor.constraint(equalToConstant: 320),
-            errorView.heightAnchor.constraint(equalToConstant: 230),
+            errorView.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing10x.rawValue * 3.2),
+            errorView.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing10x.rawValue * 2.3),
             
             errorImage.centerXAnchor.constraint(equalTo: errorView.centerXAnchor),
-            errorImage.topAnchor.constraint(equalTo: errorView.topAnchor, constant: 20),
-            errorImage.heightAnchor.constraint(equalToConstant: 50),
-            errorImage.widthAnchor.constraint(equalToConstant: 50),
+            errorImage.topAnchor.constraint(equalTo: errorView.topAnchor, constant: DSSpacings.baseSpacing2x.rawValue),
+            errorImage.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing5x.rawValue),
+            errorImage.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing5x.rawValue),
             
             errorLabel.centerXAnchor.constraint(equalTo: errorView.centerXAnchor),
-            errorLabel.topAnchor.constraint(equalTo: errorImage.bottomAnchor, constant: 10),
+            errorLabel.topAnchor.constraint(equalTo: errorImage.bottomAnchor, constant: DSSpacings.baseSpacing.rawValue),
             errorLabel.widthAnchor.constraint(equalTo: errorView.widthAnchor, multiplier: 0.8),
-            errorLabel.heightAnchor.constraint(equalToConstant: 50),
+            errorLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing5x.rawValue),
             
             errorButton.centerXAnchor.constraint(equalTo: errorView.centerXAnchor),
-            errorButton.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 40)
+            errorButton.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: DSSpacings.baseSpacing4x.rawValue)
         ])
     }
 }

@@ -93,24 +93,24 @@ final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterfac
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            backgroundRoundView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            backgroundRoundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            backgroundRoundView.heightAnchor.constraint(equalToConstant: 85),
-            backgroundRoundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-            backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            backgroundRoundView.topAnchor.constraint(equalTo: topAnchor, constant: DSSpacings.baseSpacing.rawValue / 2),
+            backgroundRoundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: DSSpacings.baseSpacing.rawValue / 2),
+            backgroundRoundView.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 8.5),
+            backgroundRoundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
+            backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
             
-            balanceLabel.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 10),
-            balanceLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: 10),
-            balanceLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -10),
+            balanceLabel.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing.rawValue),
+            balanceLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing.rawValue),
+            balanceLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue),
             
-            arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: 5),
-            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -5),
-            arrowImage.heightAnchor.constraint(equalToConstant: 17),
-            arrowImage.widthAnchor.constraint(equalToConstant: 12),
+            arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing.rawValue / 2),
+            arrowImage.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing.rawValue / 2),
+            arrowImage.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 1.7),
+            arrowImage.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing.rawValue * 1.2),
             
-            actionButtonStackView.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor, constant: 10),
+            actionButtonStackView.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor, constant: DSSpacings.baseSpacing.rawValue),
             actionButtonStackView.widthAnchor.constraint(equalTo: backgroundRoundView.widthAnchor),
-            actionButtonStackView.heightAnchor.constraint(equalToConstant: 180)
+            actionButtonStackView.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing10x.rawValue * 1.8)
         ])
     }
 }
