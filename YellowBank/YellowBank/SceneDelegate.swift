@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    weak var rootViewController: UIViewController?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -24,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
         
+        self.rootViewController = rootViewController
         self.window = window
     }
 
@@ -58,3 +60,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension SceneDelegate {
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        let deeplinkHandler: DeeplinkHandlerProtocol = DeeplinkHandler(rootViewController: rootViewController)
+        guard let firstUrl = URLContexts.first?.url else {
+            deeplinkHandler.deeplinkNavigateTo(scene: .defaultScene)
+            return
+        }
+        
+        let deeplinkScene = firstUrl.absoluteString.split(separator: "://")
+        if let scene: DeeplinkScene = DeeplinkScene(rawValue: "\(deeplinkScene[1])")  {
+            deeplinkHandler.deeplinkNavigateTo(scene: scene)
+            return
+        }
+        
+        deeplinkHandler.deeplinkNavigateTo(scene: .defaultScene)
+    }
+}
