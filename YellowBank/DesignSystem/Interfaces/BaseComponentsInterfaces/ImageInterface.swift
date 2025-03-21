@@ -12,10 +12,4 @@ protocol ImageInterface: UIImageView {
 
 struct ImageDTO {
     let imageName: ImageName
-    let coror: UIColor
-    
-    init(imageName: ImageName, coror: UIColor = .black) {
-        self.imageName = imageName
-        self.coror = coror
-    }
 }

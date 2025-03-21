@@ -47,12 +47,3 @@ enum DesignSystem {
         }
     }
 }
-
-enum DSSpacings: CGFloat {
-    case baseSpacing = 10
-    case baseSpacing2x = 20
-    case baseSpacing4x = 40
-    case baseSpacing5x = 50
-    case baseSpacing10x = 100
-    case baseSpacing20x = 200
-}
