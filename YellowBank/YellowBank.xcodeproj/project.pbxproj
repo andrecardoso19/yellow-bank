@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 1F8F74832D89E78F00F23293;
 			remoteInfo = YellowBank;
 		};
-		1F8F74A52D89E79100F23293 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1F8F747C2D89E78F00F23293 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1F8F74832D89E78F00F23293;
-			remoteInfo = YellowBank;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1F8F74842D89E78F00F23293 /* YellowBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YellowBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F8F749A2D89E79100F23293 /* YellowBankTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YellowBankTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F8F74A42D89E79100F23293 /* YellowBankUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YellowBankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -70,13 +62,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F8F74A12D89E79100F23293 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -94,7 +79,6 @@
 			children = (
 				1F8F74842D89E78F00F23293 /* YellowBank.app */,
 				1F8F749A2D89E79100F23293 /* YellowBankTests.xctest */,
-				1F8F74A42D89E79100F23293 /* YellowBankUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,26 +131,6 @@
 			productReference = 1F8F749A2D89E79100F23293 /* YellowBankTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1F8F74A32D89E79100F23293 /* YellowBankUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1F8F74B52D89E79100F23293 /* Build configuration list for PBXNativeTarget "YellowBankUITests" */;
-			buildPhases = (
-				1F8F74A02D89E79100F23293 /* Sources */,
-				1F8F74A12D89E79100F23293 /* Frameworks */,
-				1F8F74A22D89E79100F23293 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1F8F74A62D89E79100F23293 /* PBXTargetDependency */,
-			);
-			name = YellowBankUITests;
-			packageProductDependencies = (
-			);
-			productName = YellowBankUITests;
-			productReference = 1F8F74A42D89E79100F23293 /* YellowBankUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -183,10 +147,6 @@
 					1F8F74992D89E79100F23293 = {
 						CreatedOnToolsVersion = 16.0;
 						LastSwiftMigration = 1600;
-						TestTargetID = 1F8F74832D89E78F00F23293;
-					};
-					1F8F74A32D89E79100F23293 = {
-						CreatedOnToolsVersion = 16.0;
 						TestTargetID = 1F8F74832D89E78F00F23293;
 					};
 				};
@@ -207,7 +167,6 @@
 			targets = (
 				1F8F74832D89E78F00F23293 /* YellowBank */,
 				1F8F74992D89E79100F23293 /* YellowBankTests */,
-				1F8F74A32D89E79100F23293 /* YellowBankUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -221,13 +180,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1F8F74982D89E79100F23293 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1F8F74A22D89E79100F23293 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -251,13 +203,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F8F74A02D89E79100F23293 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -265,11 +210,6 @@
 			isa = PBXTargetDependency;
 			target = 1F8F74832D89E78F00F23293 /* YellowBank */;
 			targetProxy = 1F8F749B2D89E79100F23293 /* PBXContainerItemProxy */;
-		};
-		1F8F74A62D89E79100F23293 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1F8F74832D89E78F00F23293 /* YellowBank */;
-			targetProxy = 1F8F74A52D89E79100F23293 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -484,38 +424,6 @@
 			};
 			name = Release;
 		};
-		1F8F74B62D89E79100F23293 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = YellowBank.YellowBankUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = YellowBank;
-			};
-			name = Debug;
-		};
-		1F8F74B72D89E79100F23293 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = YellowBank.YellowBankUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = YellowBank;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -542,15 +450,6 @@
 			buildConfigurations = (
 				1F8F74B32D89E79100F23293 /* Debug */,
 				1F8F74B42D89E79100F23293 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1F8F74B52D89E79100F23293 /* Build configuration list for PBXNativeTarget "YellowBankUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1F8F74B62D89E79100F23293 /* Debug */,
-				1F8F74B72D89E79100F23293 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
