@@ -7,7 +7,7 @@
 import UIKit
 
 protocol DeeplinkHandlerProtocol {
-    func deeplinkNavigateTo(scene: DeeplinkScene)
+    func openDeeplink(string: String)
 }
 
 
@@ -18,6 +18,17 @@ final class DeeplinkHandler: DeeplinkHandlerProtocol {
         self.rootViewController = rootViewController
     }
     
+    func openDeeplink(string: String) {
+        let deeplinkScene = string.split(separator: "://")
+        if let scene: DeeplinkScene = DeeplinkScene(rawValue: "\(deeplinkScene[1])")  {
+            deeplinkNavigateTo(scene: scene)
+            return
+        }
+        deeplinkNavigateTo(scene: .home)
+    }
+}
+
+private extension DeeplinkHandler {
     func deeplinkNavigateTo(scene: DeeplinkScene) {
         var viewController = HomeFactory.make()
         switch scene {

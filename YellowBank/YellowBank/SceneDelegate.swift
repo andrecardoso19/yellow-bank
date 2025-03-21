@@ -64,16 +64,9 @@ extension SceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         let deeplinkHandler: DeeplinkHandlerProtocol = DeeplinkHandler(rootViewController: rootViewController)
         guard let firstUrl = URLContexts.first?.url else {
-            deeplinkHandler.deeplinkNavigateTo(scene: .home)
+            deeplinkHandler.openDeeplink(string: "yellowbank://home")
             return
         }
-        
-        let deeplinkScene = firstUrl.absoluteString.split(separator: "://")
-        if let scene: DeeplinkScene = DeeplinkScene(rawValue: "\(deeplinkScene[1])")  {
-            deeplinkHandler.deeplinkNavigateTo(scene: scene)
-            return
-        }
-        
-        deeplinkHandler.deeplinkNavigateTo(scene: .home)
+        deeplinkHandler.openDeeplink(string: firstUrl.absoluteString)
     }
 }

@@ -16,7 +16,7 @@ final class DeeplinkHandlerTests: XCTestCase {
         
         let sut = DeeplinkHandler(rootViewController: navigationController.topViewController)
         
-        sut.deeplinkNavigateTo(scene: .home)
+        sut.openDeeplink(string: "yellowbank://home")
         
         XCTAssertTrue(navigationController.viewControllers.last is HomeViewController)
     }
@@ -28,7 +28,7 @@ final class DeeplinkHandlerTests: XCTestCase {
         
         let sut = DeeplinkHandler(rootViewController: navigationController.topViewController)
         
-        sut.deeplinkNavigateTo(scene: .homeWithMoreData)
+        sut.openDeeplink(string: "yellowbank://homeMoreData")
         
         XCTAssertTrue(navigationController.viewControllers.last is HomeViewController)
     }
@@ -40,7 +40,19 @@ final class DeeplinkHandlerTests: XCTestCase {
         
         let sut = DeeplinkHandler(rootViewController: navigationController.topViewController)
         
-        sut.deeplinkNavigateTo(scene: .homeNoHeader)
+        sut.openDeeplink(string: "yellowbank://homeNoHeader")
+        
+        XCTAssertTrue(navigationController.viewControllers.last is HomeViewController)
+    }
+    
+    func testDeeplinkNavigateTo_WhenInvalidDeeplink_ShouldCallHomeScene() {
+        let viewController = UIViewController()
+        let navigationController = UINavigationController()
+        navigationController.pushViewController(viewController, animated: true)
+        
+        let sut = DeeplinkHandler(rootViewController: navigationController.topViewController)
+        
+        sut.openDeeplink(string: "yellowbank://zzzzz")
         
         XCTAssertTrue(navigationController.viewControllers.last is HomeViewController)
     }
