@@ -64,7 +64,7 @@ extension SceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         let deeplinkHandler: DeeplinkHandlerProtocol = DeeplinkHandler(rootViewController: rootViewController)
         guard let firstUrl = URLContexts.first?.url else {
-            deeplinkHandler.deeplinkNavigateTo(scene: .defaultScene)
+            deeplinkHandler.deeplinkNavigateTo(scene: .home)
             return
         }
         
@@ -74,6 +74,6 @@ extension SceneDelegate {
             return
         }
         
-        deeplinkHandler.deeplinkNavigateTo(scene: .defaultScene)
+        deeplinkHandler.deeplinkNavigateTo(scene: .home)
     }
 }

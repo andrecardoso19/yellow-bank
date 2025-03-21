@@ -21,8 +21,6 @@ final class DeeplinkHandler: DeeplinkHandlerProtocol {
     func deeplinkNavigateTo(scene: DeeplinkScene) {
         var viewController = HomeFactory.make()
         switch scene {
-        case .defaultScene:
-            viewController = HomeFactory.make()
         case .home:
             viewController = HomeFactory.make()
         case .homeWithMoreData:
@@ -36,7 +34,6 @@ final class DeeplinkHandler: DeeplinkHandlerProtocol {
 }
 
 enum DeeplinkScene: String {
-    case defaultScene = ""
     case home = "home"
     case homeWithMoreData = "homeMoreData"
     case homeNoHeader = "homeNoHeader"
