@@ -6,11 +6,35 @@
 //
 import UIKit
 
+protocol ErrorViewDelegate: AnyObject {
+    func onReturnButtonClick()
+}
+
 final class ErrorView: UIView, ErrorViewInterface {
+    weak var delegate: ErrorViewDelegate?
+    private let buttonSize = DSSpacings.baseSpacing4x * 1.3
     private lazy var errorView = DesignSystem.BaseComponents.toBaseRoundBackground()
     private lazy var errorImage = DesignSystem.BaseComponents.toImage()
     private lazy var errorLabel = DesignSystem.BaseComponents.toBaseText()
-    private lazy var errorButton = DesignSystem.BaseComponents.toBalanceActionButton()
+    private lazy var buttonView: UIButton = {
+        let imageComponent = DesignSystem.BaseComponents.toImage()
+        imageComponent.setDTO(dto: ImageDTO(imageName: .arrowLeft))
+        
+        let buttonView = UIButton()
+        buttonView.setImage(imageComponent.image, for: .normal)
+        buttonView.imageView?.contentMode = .scaleAspectFill
+        buttonView.tintColor = .black
+        buttonView.backgroundColor = UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 0.3)
+        buttonView.layer.cornerRadius = buttonSize / 2
+        buttonView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let action = UIAction { [weak self] action in
+            guard let self else { return }
+            delegate?.onReturnButtonClick()
+        }
+        buttonView.addAction(action, for: .touchUpInside)
+        return buttonView
+    }()
     
     init() {
         super.init(frame: .zero)
@@ -34,7 +58,6 @@ final class ErrorView: UIView, ErrorViewInterface {
                 numberOfLines: 0
             )
         )
-        errorButton.setDTO(dto: .init(imageName: .arrowLeft, text: .init()))
         
         setupViews()
         setupConstraints()
@@ -44,7 +67,7 @@ final class ErrorView: UIView, ErrorViewInterface {
         addSubview(errorView)
         addSubview(errorImage)
         addSubview(errorLabel)
-        addSubview(errorButton)
+        addSubview(buttonView)
     }
     
     func setupConstraints() {
@@ -64,8 +87,10 @@ final class ErrorView: UIView, ErrorViewInterface {
             errorLabel.widthAnchor.constraint(equalTo: errorView.widthAnchor, multiplier: 0.8),
             errorLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing5x),
             
-            errorButton.centerXAnchor.constraint(equalTo: errorView.centerXAnchor),
-            errorButton.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: DSSpacings.baseSpacing4x)
+            buttonView.centerXAnchor.constraint(equalTo: errorView.centerXAnchor),
+            buttonView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: DSSpacings.baseSpacing2x),
+            buttonView.widthAnchor.constraint(equalToConstant: buttonSize),
+            buttonView.heightAnchor.constraint(equalToConstant: buttonSize)
         ])
     }
 }

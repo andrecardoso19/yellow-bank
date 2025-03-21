@@ -112,6 +112,7 @@ extension HomeViewController: HomeDisplaying {
     
     func displayError() {
         let errorView = DesignSystem.Components.toErrorView()
+        errorView.delegate = self
         view.addSubview(errorView)
         
         NSLayoutConstraint.activate([
@@ -144,5 +145,11 @@ extension HomeViewController: HomeDisplaying {
         tableView.removeFromSuperview()
         headerView.removeFromSuperview()
         buildLayout()
+    }
+}
+
+extension HomeViewController: ErrorViewDelegate {
+    func onReturnButtonClick() {
+        navigationController?.popViewController(animated: true)
     }
 }

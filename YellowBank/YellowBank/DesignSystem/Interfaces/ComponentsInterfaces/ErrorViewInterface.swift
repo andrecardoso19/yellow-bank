@@ -6,4 +6,6 @@
 //
 import UIKit
 
-protocol ErrorViewInterface: UIView {}
+protocol ErrorViewInterface: UIView {
+    var delegate: ErrorViewDelegate? { get set }
+}
