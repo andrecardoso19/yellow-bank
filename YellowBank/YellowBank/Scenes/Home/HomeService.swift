@@ -24,10 +24,7 @@ final class HomeService {
 // MARK: - HomeServicing
 extension HomeService: HomeServicing {
     func getSpecificData(jsonType: JSONType, completion: @escaping (Result<HomeResponse, HomeApiError>) -> Void) {
-        var JSON = FetchData.getData(type: jsonType)
-        if let mockString {
-            JSON = mockString
-        }
+        let JSON = FetchData.getData(type: jsonType)
         let jsonData = JSON.data(using: .utf8)!
         
         do {
