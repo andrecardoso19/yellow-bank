@@ -16,6 +16,8 @@ enum FetchData {
             return DataSource.moreInfoJson
         case .transactionsMock:
             return DataSource.transactionsMock
+        case .invalidData:
+            return DataSource.ivalidData
         }
     }
     
@@ -29,6 +31,7 @@ enum JSONType: String {
     case noHeaderMock = "Mock sem header"
     case moreInfoMock = "Mock com mais itens"
     case transactionsMock = "Mock com transações recentes"
+    case invalidData = "InvalidData"
 }
 
 
@@ -767,4 +770,6 @@ enum DataSource {
         }
         
         """
+    
+    static let ivalidData = "invalidData"
 }
