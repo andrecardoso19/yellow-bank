@@ -8,6 +8,7 @@ import UIKit
 
 protocol BalanceItemInterface: UIView {
     func setDTO(dto: BalanceItemDTO)
+    var delegate: BalanceItemViewDelegate? { get set }
 }
 
 struct BalanceItemDTO {

@@ -20,7 +20,7 @@ final class DeeplinkHandler: DeeplinkHandlerProtocol {
     
     func openDeeplink(string: String) {
         let deeplinkScene = string.split(separator: "://")
-        if let scene: DeeplinkScene = DeeplinkScene(rawValue: "\(deeplinkScene[1])")  {
+        if deeplinkScene.count > 0, let scene: DeeplinkScene = DeeplinkScene(rawValue: "\(deeplinkScene[1])")  {
             deeplinkNavigateTo(scene: scene)
             return
         }

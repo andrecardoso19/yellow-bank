@@ -97,7 +97,10 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cells[indexPath.row]
+        if let cell = cells[indexPath.row] as? BalanceCell {
+            cell.delegate = self
+        }
+        return cells[indexPath.row]
     }
 }
 
@@ -151,5 +154,11 @@ extension HomeViewController: HomeDisplaying {
 extension HomeViewController: ErrorViewDelegate {
     func onReturnButtonClick() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension HomeViewController: BalanceCellDelegate {
+    func onDeeplinkClicked(deeplink: String) {
+        DeeplinkHandler(rootViewController: self.navigationController?.viewControllers.first).openDeeplink(string: deeplink)
     }
 }

@@ -6,7 +6,12 @@
 //
 import UIKit
 
+protocol BalanceItemViewDelegate: AnyObject {
+    func deeplinkClicked(deeplinkClicked: String)
+}
+
 final class BalanceItemView: UIView, BalanceItemInterface {
+    weak var delegate: BalanceItemViewDelegate?
     private let baseSpacing = DSSpacings.baseSpacing
     private let baseMidSpacing = DSSpacings.baseSpacing / 2
     
@@ -79,7 +84,9 @@ final class BalanceItemView: UIView, BalanceItemInterface {
     private func setupActionButtonItems(items: [HomeBalanceItem]) {
         for item in items {
             let actionButton = DesignSystem.BaseComponents.toBalanceActionButton()
-            actionButton.setDTO(dto: .init(imageName: item.icon, text: item.title))
+            actionButton.setDTO(dto: .init(imageName: item.icon, text: item.title, deeplink: item.deeplink ?? ""))
+            actionButton.delegate = self
+            
             actionButtonStackView.addArrangedSubview(actionButton)
         }
     }
@@ -128,5 +135,11 @@ final class BalanceItemView: UIView, BalanceItemInterface {
             actionButtonStackView.widthAnchor.constraint(equalTo: backgroundRoundView.widthAnchor),
             actionButtonStackView.heightAnchor.constraint(equalToConstant: 80)
         ])
+    }
+}
+
+extension BalanceItemView: BalanceActionButtonViewDelegate {
+    func onButtonDeeplinkClicked(deeplink: String) {
+        delegate?.deeplinkClicked(deeplinkClicked: deeplink)
     }
 }

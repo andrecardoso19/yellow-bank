@@ -6,8 +6,13 @@
 //
 import UIKit
 
+protocol BalanceCellDelegate: AnyObject {
+    func onDeeplinkClicked(deeplink: String)
+}
+
 final class BalanceCell: UITableViewCell {
     static let reuseId = "BalanceCell"
+    weak var delegate: BalanceCellDelegate?
     private var dto: BalanceCellDTO
     private lazy var balanceItem = DesignSystem.Components.toBalanceItem()
     
@@ -47,7 +52,14 @@ extension BalanceCell: ConfigurableCell {
     
     func setup(with DTO: BalanceCellDTO) {
         balanceItem.setDTO(dto: .init(amount: DTO.amount, items: DTO.items))
+        balanceItem.delegate = self
         buildLayout()
+    }
+}
+
+extension BalanceCell: BalanceItemViewDelegate {
+    func deeplinkClicked(deeplinkClicked: String) {
+        delegate?.onDeeplinkClicked(deeplink: deeplinkClicked)
     }
 }
 

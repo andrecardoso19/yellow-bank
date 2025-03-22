@@ -6,8 +6,14 @@
 //
 import UIKit
 
+protocol BalanceActionButtonViewDelegate: AnyObject {
+    func onButtonDeeplinkClicked(deeplink: String)
+}
+
 final class BalanceActionButtonView: UIView, BalanceActionButtonInterface {
+    weak var delegate: BalanceActionButtonViewDelegate?
     private var buttonHeightWidth: CGFloat = DSSpacings.baseSpacing2x * 3
+    private var deeplink = String()
     
     private lazy var button: UIButton = {
         let button = UIButton(type: .system)
@@ -15,6 +21,12 @@ final class BalanceActionButtonView: UIView, BalanceActionButtonInterface {
         button.backgroundColor = UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 0.3)
         button.layer.cornerRadius = buttonHeightWidth / 2
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        let action = UIAction { [weak self] action in
+            guard let self else { return }
+            delegate?.onButtonDeeplinkClicked(deeplink: deeplink)
+        }
+        button.addAction(action, for: .touchUpInside)
         return button
     }()
     
@@ -45,6 +57,8 @@ final class BalanceActionButtonView: UIView, BalanceActionButtonInterface {
         titleLabel.text = dto.text.text
         titleLabel.font = .systemFont(ofSize: CGFloat(dto.text.fontSize), weight: .medium)
         titleLabel.textColor = UIColor(named: dto.text.color)
+        
+        deeplink = dto.deeplink
         
         buildLayout()
     }
