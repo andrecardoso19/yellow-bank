@@ -35,7 +35,7 @@ final class GenericSectionCell: UITableViewCell {
         NSLayoutConstraint.activate([
             genericSectionItem.topAnchor.constraint(equalTo: contentView.topAnchor),
             genericSectionItem.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            genericSectionItem.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 7),
+            genericSectionItem.heightAnchor.constraint(equalToConstant: 80),
             genericSectionItem.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             genericSectionItem.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])

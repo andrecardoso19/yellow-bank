@@ -18,7 +18,7 @@ final class BalanceActionButtonView: UIView, BalanceActionButtonInterface {
     private lazy var button: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .black
-        button.backgroundColor = UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 0.3)
+        button.backgroundColor = UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 0.2)
         button.layer.cornerRadius = buttonHeightWidth / 2
         button.translatesAutoresizingMaskIntoConstraints = false
         

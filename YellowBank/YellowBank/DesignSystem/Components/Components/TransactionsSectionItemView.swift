@@ -45,7 +45,8 @@ final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterfac
             dto: .init(
                 text: "Últimas Transações",
                 fontSize: 17,
-                textColor: .black
+                textColor: .black,
+                fontWheight: .bold
             )
         )
         backgroundRoundView.setDTO(
@@ -100,7 +101,7 @@ final class TransactionsSectionItemView: UIView, TransactionsSectionItemInterfac
             backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -DSSpacings.baseSpacing / 2),
             
             balanceLabel.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing),
-            balanceLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+            balanceLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing * 1.2),
             balanceLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing),
             
             arrowImage.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing / 2),

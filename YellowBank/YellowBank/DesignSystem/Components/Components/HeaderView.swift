@@ -33,7 +33,14 @@ final class HeaderView: UIView, HeaderItemInterface {
     }
     
     func setDTO(dto: HeaderItemDTO) {
-        headerTextLabel.setDTO(dto: .init(text: dto.title.text, fontSize: CGFloat(dto.title.fontSize), textColor: .white))
+        headerTextLabel.setDTO(
+            dto: .init(
+                text: dto.title.text,
+                fontSize: CGFloat(dto.title.fontSize),
+                textColor: .white,
+                fontWheight: .light
+            )
+        )
     }
     
     func buildLayout() {

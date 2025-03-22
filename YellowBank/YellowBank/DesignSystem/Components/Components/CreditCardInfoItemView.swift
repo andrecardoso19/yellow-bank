@@ -62,7 +62,7 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
             )
         )
         arrowImage.setDTO(dto: .init(imageName: .arrowRight, coror: .white))
-        backgroundRoundView.setDTO(dto: .init(backgroundColor: .black))
+        backgroundRoundView.setDTO(dto: .init(backgroundColor: .black.withAlphaComponent(0.9)))
         
         let imageComponent = DesignSystem.BaseComponents.toImage()
         imageComponent.setDTO(dto: .init(imageName: dto.icon))
@@ -96,7 +96,8 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
             backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -DSSpacings.baseSpacing / 2),
             
             cardFlagImageView.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: DSSpacings.baseSpacing),
-            cardFlagImageView.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing / 2),
+            cardFlagImageView.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+//            cardFlagImageView.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing / 2),
             cardFlagImageView.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing5x),
             cardFlagImageView.widthAnchor.constraint(equalToConstant: DSSpacings.baseSpacing5x),
             
@@ -106,17 +107,20 @@ final class CreditCardInfoItemView: UIView, CreditCardInfoItemInterface {
             titleLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing2x),
             
             subTitleLabel.topAnchor.constraint(equalTo: cardFlagImageView.bottomAnchor, constant: -DSSpacings.baseSpacing),
-            subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+//            subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+            subTitleLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing * 1.5),
             subTitleLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing),
             subTitleLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 3),
             
             valueLabel.topAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: -DSSpacings.baseSpacing / 2),
-            valueLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+//            valueLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+            valueLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing * 1.5),
             valueLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing),
             valueLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 3),
             
             dueDateLabel.topAnchor.constraint(equalTo: valueLabel.bottomAnchor, constant: -DSSpacings.baseSpacing / 2),
-            dueDateLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+//            dueDateLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing),
+            dueDateLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: DSSpacings.baseSpacing * 1.5),
             dueDateLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -DSSpacings.baseSpacing),
             dueDateLabel.heightAnchor.constraint(equalToConstant: DSSpacings.baseSpacing * 3),
             

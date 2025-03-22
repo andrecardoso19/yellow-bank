@@ -134,7 +134,7 @@ extension HomeViewController: HomeDisplaying {
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 60),
+            headerView.heightAnchor.constraint(equalToConstant: 55),
             
             tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),

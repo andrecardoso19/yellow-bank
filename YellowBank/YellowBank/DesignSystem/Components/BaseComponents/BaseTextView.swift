@@ -8,7 +8,7 @@ import UIKit
 
 final class BaseTextView: UILabel, BaseTextInterface {
     func setDTO(dto: BaseTextDTO) {
-        self.font = .systemFont(ofSize: CGFloat(dto.fontSize), weight: .medium)
+        self.font = .systemFont(ofSize: CGFloat(dto.fontSize), weight: dto.fontWheight)
         self.text = dto.text
         self.textColor = dto.textColor
         self.numberOfLines = dto.numberOfLines

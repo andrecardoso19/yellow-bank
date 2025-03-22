@@ -62,13 +62,17 @@ final class BalanceItemView: UIView, BalanceItemInterface {
             dto: .init(
                 text: dto.amount.value.text,
                 fontSize: CGFloat(dto.amount.value.fontSize),
-                textColor: UIColor(named: dto.amount.value.color) ?? .black)
+                textColor: UIColor(named: dto.amount.value.color) ?? .black,
+                fontWheight: .semibold
+            )
         )
         currencyLabel.setDTO(
             dto: .init(
                 text: dto.amount.currencySymbol,
                 fontSize: CGFloat(dto.amount.value.fontSize),
-                textColor: UIColor(named: dto.amount.value.color) ?? .black)
+                textColor: UIColor(named: dto.amount.value.color) ?? .black,
+                fontWheight: .semibold
+            )
         )
         backgroundRoundView.setDTO(
             dto: .init(
@@ -115,12 +119,12 @@ final class BalanceItemView: UIView, BalanceItemInterface {
             backgroundRoundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -baseMidSpacing),
             
             balanceLabel.topAnchor.constraint(equalTo: backgroundRoundView.topAnchor, constant: baseSpacing),
-            balanceLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: baseSpacing),
+            balanceLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: baseSpacing * 1.2),
             balanceLabel.trailingAnchor.constraint(equalTo: backgroundRoundView.trailingAnchor, constant: -baseSpacing),
             balanceLabel.heightAnchor.constraint(equalToConstant: 20),
             
             currencyLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor),
-            currencyLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: baseSpacing),
+            currencyLabel.leadingAnchor.constraint(equalTo: backgroundRoundView.leadingAnchor, constant: baseSpacing * 1.2),
             currencyLabel.heightAnchor.constraint(equalToConstant: 30),
             
             valueLabel.centerYAnchor.constraint(equalTo: currencyLabel.centerYAnchor),
