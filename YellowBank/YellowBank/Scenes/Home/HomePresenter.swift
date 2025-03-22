@@ -12,6 +12,7 @@ protocol HomePresenting: AnyObject {
     func presentHeader(header: HomeTitle)
     func displayError(error: HomeApiError)
     func removeHeader()
+    func stopLoading()
 }
 
 final class HomePresenter {
@@ -57,6 +58,10 @@ extension HomePresenter: HomePresenting {
     
     func displayError(error: HomeApiError) {
         viewController?.displayError()
+    }
+    
+    func stopLoading() {
+        viewController?.stopLoading()
     }
 }
 

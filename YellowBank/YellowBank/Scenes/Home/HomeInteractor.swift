@@ -7,6 +7,7 @@
 
 protocol HomeInteracting: AnyObject {
     func loadData()
+    func loadSpecificData(jsonType: JSONType)
 }
 
 final class HomeInteractor {
@@ -22,6 +23,18 @@ final class HomeInteractor {
 
 // MARK: - HomeInteracting
 extension HomeInteractor: HomeInteracting {
+    func loadSpecificData(jsonType: JSONType) {
+        service.getSpecificData(jsonType: jsonType) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let homeResponse):
+                handleSuccess(homeResponse: homeResponse)
+            case .failure(let error):
+                handleError(error: error)
+            }
+        }
+    }
+    
     func loadData() {
         service.getData { [weak self] result in
             guard let self else { return }
@@ -47,9 +60,11 @@ private extension HomeInteractor {
             presenter.removeHeader()
         }
         presenter.presentHome(homeResponse: homeResponse)
+        presenter.stopLoading()
     }
     
     func handleError(error: HomeApiError) {
         presenter.displayError(error: error)
+        presenter.stopLoading()
     }
 }

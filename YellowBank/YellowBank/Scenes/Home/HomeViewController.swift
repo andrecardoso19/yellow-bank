@@ -12,10 +12,12 @@ protocol HomeDisplaying: AnyObject {
     func displayError()
     func displayHeader(header: HomeTitle)
     func removeHeader()
+    func stopLoading()
 }
 
 final class HomeViewController: UIViewController {
     private let interactor: HomeInteracting
+    private let refreshControl = UIRefreshControl()
     private var cells: [UITableViewCell] = []
     
     private lazy var headerView = DesignSystem.Components.toHeaderItem()
@@ -29,13 +31,14 @@ final class HomeViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.bounces = false
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         
         return tableView
     }()
@@ -149,6 +152,10 @@ extension HomeViewController: HomeDisplaying {
         headerView.removeFromSuperview()
         buildLayout()
     }
+    
+    func stopLoading() {
+        refreshControl.endRefreshing()
+    }
 }
 
 extension HomeViewController: ErrorViewDelegate {
@@ -160,5 +167,16 @@ extension HomeViewController: ErrorViewDelegate {
 extension HomeViewController: BalanceCellDelegate {
     func onDeeplinkClicked(deeplink: String) {
         DeeplinkHandler(rootViewController: self.navigationController?.viewControllers.first).openDeeplink(string: deeplink)
+    }
+}
+
+private extension HomeViewController {
+    @objc
+    func reloadData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self else { return }
+            // Tipo de mock pra reload
+            interactor.loadSpecificData(jsonType: .moreInfoMock)
+        }
     }
 }

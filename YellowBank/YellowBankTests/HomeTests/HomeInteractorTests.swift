@@ -34,12 +34,20 @@ private class HomePresenterSpy: HomePresenting {
     func removeHeader() {
         removeHeaderCount += 1
     }
+    
+    var stopLoadingCount = 0
+    func stopLoading() {
+        stopLoadingCount += 1
+    }
 }
 
 private class HomeServiceMock: HomeServicing {
     var getDataResult: Result<YellowBank.HomeResponse, YellowBank.HomeApiError> = .failure(.decodeFail)
-    
     func getData(completion: @escaping (Result<YellowBank.HomeResponse, YellowBank.HomeApiError>) -> Void) {
+        completion(getDataResult)
+    }
+    
+    func getSpecificData(jsonType: YellowBank.JSONType, completion: @escaping (Result<YellowBank.HomeResponse, YellowBank.HomeApiError>) -> Void) {
         completion(getDataResult)
     }
 }
@@ -73,6 +81,7 @@ final class HomeInteractorTests: XCTestCase {
         
         XCTAssertEqual(args.presenterSpy.displayErrorCount, 1)
         XCTAssertEqual(args.presenterSpy.displayErrorType, .decodeFail)
+        XCTAssertEqual(args.presenterSpy.stopLoadingCount, 1)
     }
     
     func testLoadData_WhenSuccess_ShouldPresenterDisplayHomeAndHeader() {
@@ -86,6 +95,7 @@ final class HomeInteractorTests: XCTestCase {
         XCTAssertEqual(args.presenterSpy.presentHomeResponse, responseMock)
         XCTAssertEqual(args.presenterSpy.presentHeaderCount, 1)
         XCTAssertEqual(args.presenterSpy.headerPresented, responseMock.header?.title)
+        XCTAssertEqual(args.presenterSpy.stopLoadingCount, 1)
     }
     
     func testLoadData_WhenSuccessNoHeader_ShouldPresenterDisplayHomeAndRemoveHeader() {
@@ -98,6 +108,7 @@ final class HomeInteractorTests: XCTestCase {
         XCTAssertEqual(args.presenterSpy.presentHomeCount, 1)
         XCTAssertEqual(args.presenterSpy.presentHomeResponse, responseMock)
         XCTAssertEqual(args.presenterSpy.removeHeaderCount, 1)
+        XCTAssertEqual(args.presenterSpy.stopLoadingCount, 1)
     }
     
     func testLoadData_WhenSuccessWithHeader_ThenSuccessNoHeader_ShouldPresenterPresentHomeAndRemoveHeader() {
@@ -112,6 +123,7 @@ final class HomeInteractorTests: XCTestCase {
         XCTAssertEqual(args.presenterSpy.presentHomeResponse, responseMock)
         XCTAssertEqual(args.presenterSpy.presentHeaderCount, 1)
         XCTAssertEqual(args.presenterSpy.headerPresented, responseMock.header?.title)
+        XCTAssertEqual(args.presenterSpy.stopLoadingCount, 1)
         
         args.serviceMock.getDataResult = .success(responseMockEmptyHeader)
         args.sut.loadData()
@@ -119,6 +131,7 @@ final class HomeInteractorTests: XCTestCase {
         XCTAssertEqual(args.presenterSpy.presentHomeCount, 2)
         XCTAssertEqual(args.presenterSpy.presentHomeResponse, responseMockEmptyHeader)
         XCTAssertEqual(args.presenterSpy.removeHeaderCount, 1)
+        XCTAssertEqual(args.presenterSpy.stopLoadingCount, 2)
     }
     
     func testLoadData_WhenSuccessAndItemsEmpty_ShouldPresenterDisplayError() {
@@ -130,6 +143,30 @@ final class HomeInteractorTests: XCTestCase {
         
         XCTAssertEqual(args.presenterSpy.displayErrorCount, 1)
         XCTAssertEqual(args.presenterSpy.displayErrorType, .emptyData)
+        XCTAssertEqual(args.presenterSpy.stopLoadingCount, 1)
+    }
+    
+    func testReloadData_WhenSuccess_ShouldPresentHomeAndStopLoading() {
+        let args = makeSUT()
+        let responseMock = HomeResponseMock.responseMock
+        
+        args.serviceMock.getDataResult = .success(responseMock)
+        args.sut.loadSpecificData(jsonType: .defaultMock)
+        
+        XCTAssertEqual(args.presenterSpy.presentHomeResponse, responseMock)
+        XCTAssertEqual(args.presenterSpy.presentHomeCount, 1)
+        XCTAssertEqual(args.presenterSpy.stopLoadingCount, 1)
+    }
+    
+    func testReloadData_WhenFailure_ShouldPresentErrorAndStopLoading() {
+        let args = makeSUT()
+        
+        args.serviceMock.getDataResult = .failure(.decodeFail)
+        args.sut.loadSpecificData(jsonType: .defaultMock)
+        
+        XCTAssertEqual(args.presenterSpy.displayErrorType, .decodeFail)
+        XCTAssertEqual(args.presenterSpy.displayErrorCount, 1)
+        XCTAssertEqual(args.presenterSpy.stopLoadingCount, 1)
     }
 }
 

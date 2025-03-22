@@ -13,6 +13,7 @@ private class HomeDisplaySpy: HomeDisplaying {
         case displayError
         case removeHeader
         case displayHeader(header: YellowBank.HomeTitle)
+        case stopLoading
     }
 
     private(set) var messages: [Message] = []
@@ -34,6 +35,10 @@ private class HomeDisplaySpy: HomeDisplaying {
     
     func removeHeader() {
         messages.append(.removeHeader)
+    }
+    
+    func stopLoading() {
+        messages.append(.stopLoading)
     }
 }
 
@@ -117,6 +122,14 @@ final class NPSPresenterTests: XCTestCase {
         args.sut.removeHeader()
         
         XCTAssertEqual(args.displaySpy.messages, [.removeHeader])
+    }
+    
+    func testStopLoading_WhenCalled_ShouldDisplayStopLoading() {
+        let args = makeSUT()
+        
+        args.sut.stopLoading()
+        
+        XCTAssertEqual(args.displaySpy.messages, [.stopLoading])
     }
 }
 

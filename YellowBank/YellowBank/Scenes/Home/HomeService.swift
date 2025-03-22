@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomeServicing {
     func getData(completion: @escaping (Result<HomeResponse, HomeApiError>) -> Void)
+    func getSpecificData(jsonType: JSONType, completion: @escaping (Result<HomeResponse, HomeApiError>) -> Void)
 }
 
 final class HomeService {
@@ -22,6 +23,21 @@ final class HomeService {
 
 // MARK: - HomeServicing
 extension HomeService: HomeServicing {
+    func getSpecificData(jsonType: JSONType, completion: @escaping (Result<HomeResponse, HomeApiError>) -> Void) {
+        var JSON = FetchData.getData(type: jsonType)
+        if let mockString {
+            JSON = mockString
+        }
+        let jsonData = JSON.data(using: .utf8)!
+        
+        do {
+            let homeData: HomeResponse = try JSONDecoder().decode(HomeResponse.self, from: jsonData)
+            completion(.success(homeData))
+        } catch {
+            completion(.failure(.decodeFail))
+        }
+    }
+    
     func getData(completion: @escaping (Result<HomeResponse, HomeApiError>) -> Void) {
         var JSON = FetchData.getData(type: mockType)
         if let mockString {
