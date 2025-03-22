@@ -23,7 +23,7 @@ final class HomeViewController: UIViewController {
     private lazy var backgroundLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
         layer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        layer.colors = [UIColor.orange.cgColor, UIColor.white.cgColor]
+        layer.colors = [CGColor(red: 255/255, green: 165/255, blue: 0/255, alpha: 1.0), UIColor.white.cgColor]
         return layer
     }()
     
@@ -134,7 +134,7 @@ extension HomeViewController: HomeDisplaying {
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 55),
+            headerView.heightAnchor.constraint(equalToConstant: 45),
             
             tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),

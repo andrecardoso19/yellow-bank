@@ -65,7 +65,7 @@ private extension SplashHomeSelectionViewController {
         let backgroundLayer: CAGradientLayer = {
             let layer = CAGradientLayer()
             layer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-            layer.colors = [UIColor.orange.cgColor, UIColor.white.cgColor]
+            layer.colors = [CGColor(red: 255/255, green: 165/255, blue: 0/255, alpha: 1.0), UIColor.white.cgColor]
             return layer
         }()
         
