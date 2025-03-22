@@ -56,4 +56,52 @@ final class DeeplinkHandlerTests: XCTestCase {
         
         XCTAssertTrue(navigationController.viewControllers.last is HomeViewController)
     }
+    
+    func testDeeplinkNavigateTo_WhenTransferDeeplink_ShouldCallGenericScreen() {
+        let viewController = UIViewController()
+        let navigationController = UINavigationController()
+        navigationController.pushViewController(viewController, animated: true)
+        
+        let sut = DeeplinkHandler(rootViewController: navigationController.topViewController)
+        
+        sut.openDeeplink(string: "yellowbank://transfer")
+        
+        XCTAssertTrue(navigationController.viewControllers.last is GenericViewController)
+    }
+    
+    func testDeeplinkNavigateTo_WhenQrcodeDeeplink_ShouldCallGenericScreen() {
+        let viewController = UIViewController()
+        let navigationController = UINavigationController()
+        navigationController.pushViewController(viewController, animated: true)
+        
+        let sut = DeeplinkHandler(rootViewController: navigationController.topViewController)
+        
+        sut.openDeeplink(string: "yellowbank://qrcode")
+        
+        XCTAssertTrue(navigationController.viewControllers.last is GenericViewController)
+    }
+    
+    func testDeeplinkNavigateTo_WhenPixDeeplink_ShouldCallGenericScreen() {
+        let viewController = UIViewController()
+        let navigationController = UINavigationController()
+        navigationController.pushViewController(viewController, animated: true)
+        
+        let sut = DeeplinkHandler(rootViewController: navigationController.topViewController)
+        
+        sut.openDeeplink(string: "yellowbank://pix")
+        
+        XCTAssertTrue(navigationController.viewControllers.last is GenericViewController)
+    }
+    
+    func testDeeplinkNavigateTo_WhenChargeDeeplink_ShouldCallGenericScreen() {
+        let viewController = UIViewController()
+        let navigationController = UINavigationController()
+        navigationController.pushViewController(viewController, animated: true)
+        
+        let sut = DeeplinkHandler(rootViewController: navigationController.topViewController)
+        
+        sut.openDeeplink(string: "yellowbank://charge")
+        
+        XCTAssertTrue(navigationController.viewControllers.last is GenericViewController)
+    }
 }
