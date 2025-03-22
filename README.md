@@ -5,6 +5,7 @@ Repositório para app de teste, simulando a Home de um app de banco.
 - Testes unitários com XCTest
 - Factories
 - DesignSystem
+- Pull to refresh
 - Navegação Deeplink
     - yellowbank://homeNoHeader
     - yellowbank://homeMoreData
