@@ -73,7 +73,8 @@ enum DataSource {
                                     "font_size": 14,
                                     "color": "#CCCCCC"
                                 },
-                                "icon": "transfer-money-icon"
+                                "icon": "transfer-money-icon",
+                                        "deeplink": "swiftbankapp://transfer"
                             },
                             {
                                 "id": "qr-code",
@@ -82,7 +83,8 @@ enum DataSource {
                                     "font_size": 14,
                                     "color": "#CCCCCC"
                                 },
-                                "icon": "qr-code-icon"
+                                "icon": "qr-code-icon",
+                                        "deeplink": "swiftbankapp://qrcode"
                             },
                             {
                                 "id": "recarga",
@@ -91,7 +93,8 @@ enum DataSource {
                                     "font_size": 14,
                                     "color": "#CCCCCC"
                                 },
-                                "icon": "cellphone-icon"
+                                "icon": "cellphone-icon",
+                                        "deeplink": "swiftbankapp://charge"
                             }
                         ]
                     }
@@ -208,7 +211,8 @@ enum DataSource {
                                     "font_size": 14,
                                     "color": "#CCCCCC"
                                 },
-                                "icon": "transfer-money-icon"
+                                "icon": "transfer-money-icon",
+                                "deeplink": "swiftbankapp://transfer"
                             },
                             {
                                 "id": "qr-code",
@@ -217,7 +221,8 @@ enum DataSource {
                                     "font_size": 14,
                                     "color": "#CCCCCC"
                                 },
-                                "icon": "qr-code-icon"
+                                "icon": "qr-code-icon",
+                                "deeplink": "swiftbankapp://qrcode"
                             },
                             {
                                 "id": "recarga",
@@ -226,7 +231,8 @@ enum DataSource {
                                     "font_size": 14,
                                     "color": "#CCCCCC"
                                 },
-                                "icon": "cellphone-icon"
+                                "icon": "cellphone-icon",
+                                "deeplink": "swiftbankapp://charge"
                             }
                         ]
                     }
@@ -351,7 +357,8 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "transfer-money-icon"
+                    "icon": "transfer-money-icon",
+                    "deeplink": "swiftbankapp://transfer"
                   },
                   {
                     "id": "qr-code",
@@ -360,7 +367,8 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "qr-code-icon"
+                    "icon": "qr-code-icon",
+                    "deeplink": "swiftbankapp://qrcode"
                   },
                   {
                     "id": "recarga",
@@ -369,7 +377,8 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "cellphone-icon"
+                    "icon": "cellphone-icon",
+                    "deeplink": "swiftbankapp://charge"
                   }
                 ]
               }
@@ -504,7 +513,8 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "transfer-money-icon"
+                    "icon": "transfer-money-icon",
+                    "deeplink": "swiftbankapp://transfer"
                   },
                   {
                     "id": "qr-code",
@@ -513,7 +523,8 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "qr-code-icon"
+                    "icon": "qr-code-icon",
+                    "deeplink": "swiftbankapp://qrcode"
                   },
                   {
                     "id": "recarga",
@@ -522,7 +533,8 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "cellphone-icon"
+                    "icon": "cellphone-icon",
+                    "deeplink": "swiftbankapp://charge"
                   }
                 ]
               }
@@ -615,7 +627,8 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "transfer-money-icon"
+                    "icon": "transfer-money-icon",
+                    "deeplink": "swiftbankapp://transfer"
                   },
                   {
                     "id": "qr-code",
@@ -624,7 +637,8 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "qr-code-icon"
+                    "icon": "qr-code-icon",
+                    "deeplink": "swiftbankapp://qrcode"
                   },
                   {
                     "id": "recarga",
@@ -633,7 +647,8 @@ enum DataSource {
                       "font_size": 14,
                       "color": "#CCCCCC"
                     },
-                    "icon": "cellphone-icon"
+                    "icon": "cellphone-icon",
+                    "deeplink": "swiftbankapp://charge"
                   }
                 ]
               }

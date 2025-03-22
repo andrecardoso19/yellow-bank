@@ -38,6 +38,14 @@ private extension DeeplinkHandler {
             viewController = HomeFactory.make(mockType: .moreInfoMock)
         case .homeNoHeader:
             viewController = HomeFactory.make(mockType: .noHeaderMock)
+        case .pix:
+            viewController = GenericViewController(productTitle: scene.rawValue)
+        case .transfer:
+            viewController = GenericViewController(productTitle: scene.rawValue)
+        case .qrcode:
+            viewController = GenericViewController(productTitle: scene.rawValue)
+        case .charge:
+            viewController = GenericViewController(productTitle: scene.rawValue)
         }
         
         rootViewController?.navigationController?.pushViewController(viewController, animated: true)
@@ -48,4 +56,8 @@ enum DeeplinkScene: String {
     case home = "home"
     case homeWithMoreData = "homeMoreData"
     case homeNoHeader = "homeNoHeader"
+    case pix = "pix"
+    case transfer = "transfer"
+    case qrcode = "qrcode"
+    case charge = "charge"
 }

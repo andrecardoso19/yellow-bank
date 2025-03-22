@@ -37,7 +37,8 @@
                             "font_size": 14,
                             "color": "#CCCCCC"
                         },
-                        "icon": "transfer-money-icon"
+                        "icon": "transfer-money-icon",
+                        "deeplink": "swiftbankapp://transfer"
                     },
                     {
                         "id": "qr-code",
@@ -46,7 +47,8 @@
                             "font_size": 14,
                             "color": "#CCCCCC"
                         },
-                        "icon": "qr-code-icon"
+                        "icon": "qr-code-icon",
+                        "deeplink": "swiftbankapp://qrcode"
                     },
                     {
                         "id": "recarga",
@@ -55,7 +57,8 @@
                             "font_size": 14,
                             "color": "#CCCCCC"
                         },
-                        "icon": "cellphone-icon"
+                        "icon": "cellphone-icon",
+                        "deeplink": "swiftbankapp://charge"
                     }
                 ]
             }
@@ -131,7 +134,7 @@
                             "font_size": 14,
                             "color": "#CCCCCC"
                         },
-                        "icon": "cellphone-icon"
+                        "icon": "fork.knife.circle"
                     },
                     {
                         "id": "R$ 24,50",
@@ -140,7 +143,7 @@
                             "font_size": 14,
                             "color": "#CCCCCC"
                         },
-                        "icon": "pix-icon"
+                        "icon": "fork.knife.circle"
                     },
                     {
                         "id": "R$ 22,50",
@@ -149,7 +152,7 @@
                             "font_size": 14,
                             "color": "#CCCCCC"
                         },
-                        "icon": "pix-icon"
+                        "icon": "fork.knife.circle"
                     }
                 ]
             }
@@ -190,7 +193,8 @@
                             "font_size": 14,
                             "color": "#CCCCCC"
                         },
-                        "icon": "transfer-money-icon"
+                        "icon": "transfer-money-icon",
+                        "deeplink": "swiftbankapp://transfer"
                     },
                     {
                         "id": "qr-code",
@@ -199,7 +203,8 @@
                             "font_size": 14,
                             "color": "#CCCCCC"
                         },
-                        "icon": "qr-code-icon"
+                        "icon": "qr-code-icon",
+                        "deeplink": "swiftbankapp://qrcode"
                     },
                     {
                         "id": "recarga",
@@ -208,7 +213,8 @@
                             "font_size": 14,
                             "color": "#CCCCCC"
                         },
-                        "icon": "cellphone-icon"
+                        "icon": "cellphone-icon",
+                        "deeplink": "swiftbankapp://charge"
                     }
                 ]
             }
