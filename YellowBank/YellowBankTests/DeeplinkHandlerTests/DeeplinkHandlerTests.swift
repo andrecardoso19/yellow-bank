@@ -9,6 +9,7 @@ import XCTest
 @testable import YellowBank
 
 final class DeeplinkHandlerTests: XCTestCase {
+    // TODO: verificar query invalido, o split quebra por verificar o nome EXATO (URLComponents)
     func testDeeplinkNavigateTo_WhenHomeScene_ShouldCallHomeScene() {
         let viewController = UIViewController()
         let navigationController = UINavigationController()
